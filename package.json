@@ -1,18 +1,32 @@
 {
-  "name": "test",
-  "version": "1.0.0",
-  "description": "",
   "scripts": {
+    "start": "node server.js",
     "dev": "parcel static/index.html",
     "build": "parcel build static/index.html"
   },
-  "keywords": [],
+  "name": "middle.messenger.praktikum.yandex",
+  "description": "[Макет](https://www.figma.com/file/6jjbugLZcibVOCTJTHhZm2/Chat_external_link-(Copy)?node-id=0%3A1)\r [Проект выложен на Netlify](https://funny-cobbler-da5b3d.netlify.app/)",
+  "version": "1.0.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/kvitkina/middle.messenger.praktikum.yandex.git"
+  },
   "author": "",
   "license": "ISC",
-  "devDependencies": {
-    "parcel": "^2.7.0"
+  "bugs": {
+    "url": "https://github.com/kvitkina/middle.messenger.praktikum.yandex/issues"
   },
+  "homepage": "https://github.com/kvitkina/middle.messenger.praktikum.yandex#readme",
   "dependencies": {
-    "sass": "^1.54.4"
+    "express": "^4.18.1",
+    "handlebars": "^4.7.7",
+    "parcel": "^2.7.0",
+    "prettier": "^2.7.1"
+  },
+  "devDependencies": {
+    "@parcel/transformer-html": "^2.7.0",
+    "@parcel/transformer-sass": "^2.7.0",
+    "node-sass": "^7.0.1",
+    "parcel-transformer-hbs": "^1.0.4"
   }
 }
