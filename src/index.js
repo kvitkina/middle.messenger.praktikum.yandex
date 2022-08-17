@@ -1,7 +1,9 @@
-import template from './index.hbs';
+// import template from './index.hbs';
+import LoginPage from './pages/Login';
 
 window.addEventListener('DOMContentLoaded', () => {
-    const app = document.getElementById("app");
-
-    app.innerHTML = template({ variable: 'Ку-ку!'});
+    
+    document.getElementById("app").innerHTML = LoginPage;
+    // const app = document.getElementById("app");
+    // app.innerHTML = template({ title: 'Ку-ку!'});
 })
