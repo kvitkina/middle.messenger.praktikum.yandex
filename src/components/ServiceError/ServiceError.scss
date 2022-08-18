@@ -1,0 +1,29 @@
+.service-error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+    &__title {
+        font-weight: 500;
+        font-size: 40px;
+        line-height: 40px;
+        margin-bottom: 20px;
+    }
+
+    &__subtitle {
+        font-weight: 500;
+        font-size: 20px;
+        line-height: 20px;
+        margin-bottom: 69px;
+    }
+
+    &__link {
+        text-decoration: none;
+        font-weight: 500;
+        font-size: 11px;
+        line-height: 11px;
+        text-align: center;
+        color: #3369F3;
+    }
+}

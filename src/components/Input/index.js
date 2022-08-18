@@ -1,5 +1,4 @@
 import tmpl from './Input.hbs';
-import Handlebars from 'handlebars';
 
 import './Input.scss';
 
