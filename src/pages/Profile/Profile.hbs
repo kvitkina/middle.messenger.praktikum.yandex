@@ -1,0 +1,17 @@
+<section class="profile">
+    <button
+        class="profile__avatar"
+        {{!-- style={"background-image: url({{avatarLink}})"} --}}
+    ></button>
+    <h2 class="profile__name">{{user.first_name}}</h2>
+
+    <div class="profile__container">
+        {{#each actions}}
+            {{{this}}}
+        {{/each}}
+        <div class="profile__exit-link">
+            <a href="/" class="profile__link">Выйти</a>
+        </div>
+    </div>
+    
+</section>

@@ -1,9 +1,9 @@
-// import template from './index.hbs';
 import LoginPage from './pages/Login';
 import RegistrationPage from './pages/Registration';
 import Error500Page from './pages/Error500';
 import Error404Page from './pages/Error404';
 import ChatsPage from './pages/Chats';
+import ProfilePage from './pages/Profile';
 
 window.addEventListener('DOMContentLoaded', () => {
     const app = document.getElementById("app");
@@ -22,5 +22,8 @@ window.addEventListener('DOMContentLoaded', () => {
     }
     if(window.location.pathname === '/chats') {
         app.innerHTML = ChatsPage;
+    }    
+    if(window.location.pathname === '/profile') {
+        app.innerHTML = ProfilePage;
     }    
 })
