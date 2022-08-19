@@ -1,11 +1,14 @@
 <section class="profile">
-    <button
-        class="profile__avatar"
-        {{!-- style={"background-image: url({{avatarLink}})"} --}}
-    ></button>
+    <button class="profile__avatar"></button>
     <h2 class="profile__name">{{user.first_name}}</h2>
 
     <div class="profile__container">
+        <div class="profile__info">
+            {{#each inputs}}
+                {{{this}}}
+            {{/each}}
+        </div>
+
         {{#each actions}}
             {{{this}}}
         {{/each}}
@@ -13,5 +16,7 @@
             <a href="/" class="profile__link">Выйти</a>
         </div>
     </div>
-    
+    <div class="profile__save-button">
+        {{{ saveButton }}}
+    </div>    
 </section>

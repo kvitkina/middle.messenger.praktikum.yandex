@@ -61,12 +61,20 @@
     &__exit-link {
         margin-top: 10px;
     }
-    
+
     &__link {
         font-weight: 500;
         font-size: 13px;
         line-height: 13px;
         color: #FF0000;
         text-decoration: none;
+    }
+
+    &__info {
+        margin-bottom: 60px;
+    }
+
+    &__save-button {
+        width: 280px;
     }
 }

@@ -21,13 +21,12 @@
 }
 
 .links {
-    width: 700px;
     display: flex;
     flex-direction: row;
     justify-content: space-between;
     margin-bottom: 36px;
     border-bottom: 1px solid #EAEAEA;
-
+    
     &__item {
         color: #3369F3;
         cursor: pointer;
