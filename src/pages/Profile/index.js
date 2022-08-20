@@ -56,7 +56,30 @@ const profileInputs = [
         name: 'phone',
         disabled: false,
     },
+];
 
+const passwordInputs = [
+    {
+        label: 'Старый пароль',
+        type: 'password',
+        value: '',
+        name: 'oldPassword',
+        disabled: false,
+    },
+    {
+        label: 'Новый пароль',
+        type: 'password',
+        value: '',
+        name: 'newPassword',
+        disabled: false,
+    },
+    {
+        label: 'Повторите новый пароль',
+        type: 'password',
+        value: '',
+        name: 'newPassword',
+        disabled: false,
+    },
 ];
 
 const Profile = tmpl({

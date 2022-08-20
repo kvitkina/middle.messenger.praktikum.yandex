@@ -22,5 +22,16 @@
         color: #999;
         text-align: end;
         outline: none;
+
+        &::placeholder {
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 13px;
+            color: #999;
+        }
+
+        &:focus::placeholder {
+            color: transparent;
+        }
     }
 }
