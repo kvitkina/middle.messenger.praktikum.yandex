@@ -1,6 +1,6 @@
 {
   "scripts": {
-    "start": "node server.js",
+    "start": "npm run build && node server.js",
     "dev": "parcel static/index.html --target default --dist-dir ./build",
     "build": "parcel build static/index.html"
   },
