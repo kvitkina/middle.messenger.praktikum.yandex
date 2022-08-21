@@ -1,46 +1,48 @@
+@import '../../../static/variables.scss';
+
 .input {
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    margin-bottom: 32px;
+	display: flex;
+	flex-direction: column;
+	position: relative;
+	margin-bottom: 32px;
 
-    &:last-child {
-        margin-bottom: 0;
-    }
+	&:last-child {
+		margin-bottom: 0;
+	}
 
-    &__label {
-        font-weight: 500;
-        font-size: 9px;
-        line-height: 9px;
-        color: #999;
-        margin-bottom: 8px;
-    }
+	&__label {
+		font-weight: 500;
+		font-size: 9px;
+		line-height: 9px;
+		color: $disabled-color;
+		margin-bottom: 8px;
+	}
 
-    &__item {
-        border: none;
-        border-bottom: 1px solid #3369F3;
-        outline: none;
+	&__item {
+		border: none;
+		border-bottom: 1px solid $primary-color;
+		outline: none;
 
-        &::placeholder {
-            font-weight: 500;
-            font-size: 13px;
-            line-height: 13px;
-            color: #999;
-        }
-        
-        &:focus::placeholder {
-            color: transparent;
-        }
-    }
+		&::placeholder {
+			font-weight: 500;
+			font-size: 13px;
+			line-height: 13px;
+			color: $disabled-color;
+		}
 
-    &__error {
-        color: #FF2F2F;
-        font-weight: 400;
-        font-size: 8px;
-        line-height: 8px;
-        position: absolute;
-        left: 0;
-        top: 44px;
-        margin: 0;
-    }
+		&:focus::placeholder {
+			color: transparent;
+		}
+	}
+
+	&__error {
+		color: $error-color;
+		font-weight: 400;
+		font-size: 8px;
+		line-height: 8px;
+		position: absolute;
+		left: 0;
+		top: 44px;
+		margin: 0;
+	}
 }

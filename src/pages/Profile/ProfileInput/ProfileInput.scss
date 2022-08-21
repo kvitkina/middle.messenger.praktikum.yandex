@@ -1,37 +1,39 @@
+@import '../../../../static/variables.scss';
+
 .profile-input {
-    border-bottom: 1px solid #EAEAEA;
-    width: 100%;
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 10px;
-    &:last-child {
-        border-bottom: none;
-    }
-    &__label {
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 13px;
-    }
+	border-bottom: 1px solid #eaeaea;
+	width: 100%;
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+	margin-bottom: 10px;
+	&:last-child {
+		border-bottom: none;
+	}
+	&__label {
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
+	}
 
-    &__item {
-        border: none;
-        font-weight: 500;
-        font-size: 13px;
-        line-height: 13px;
-        color: #999;
-        text-align: end;
-        outline: none;
+	&__item {
+		border: none;
+		font-weight: 500;
+		font-size: 13px;
+		line-height: 13px;
+		color: $disabled-color;
+		text-align: end;
+		outline: none;
 
-        &::placeholder {
-            font-weight: 500;
-            font-size: 13px;
-            line-height: 13px;
-            color: #999;
-        }
+		&::placeholder {
+			font-weight: 500;
+			font-size: 13px;
+			line-height: 13px;
+			color: $disabled-color;
+		}
 
-        &:focus::placeholder {
-            color: transparent;
-        }
-    }
+		&:focus::placeholder {
+			color: transparent;
+		}
+	}
 }
