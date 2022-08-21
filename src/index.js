@@ -6,24 +6,24 @@ import ChatsPage from './pages/Chats';
 import ProfilePage from './pages/Profile';
 
 window.addEventListener('DOMContentLoaded', () => {
-    const app = document.getElementById("app");
-    
-    if(window.location.pathname === '/404') {
-        app.innerHTML = Error404Page;
-    }
-    if(window.location.pathname === '/500') {
-        app.innerHTML = Error500Page;
-    }
-    if(window.location.pathname === '/') {
-        app.innerHTML = LoginPage;
-    }
-    if(window.location.pathname === '/signin') {
-        app.innerHTML = RegistrationPage;
-    }
-    if(window.location.pathname === '/chats') {
-        app.innerHTML = ChatsPage;
-    }    
-    if(window.location.pathname === '/profile') {
-        app.innerHTML = ProfilePage;
-    }    
-})
+	const app = document.getElementById('app');
+
+	if (window.location.pathname === '/404') {
+		app.innerHTML = Error404Page;
+	}
+	if (window.location.pathname === '/500') {
+		app.innerHTML = Error500Page;
+	}
+	if (window.location.pathname === '/') {
+		app.innerHTML = LoginPage;
+	}
+	if (window.location.pathname === '/signin') {
+		app.innerHTML = RegistrationPage;
+	}
+	if (window.location.pathname === '/chats') {
+		app.innerHTML = ChatsPage;
+	}
+	if (window.location.pathname === '/profile') {
+		app.innerHTML = ProfilePage;
+	}
+});

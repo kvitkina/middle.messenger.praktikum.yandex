@@ -6,5 +6,5 @@ const PORT = 3000;
 app.use(express.static(`${__dirname}/dist`));
 
 app.listen(PORT, function () {
-  console.log(`Listening on port ${PORT}!`);
-}); 
+	console.log(`Listening on port ${PORT}!`);
+});
