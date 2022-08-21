@@ -1,5 +1,7 @@
+@import '../../../static/variables.scss';
+
 .profile-button {
-	color: #3369f3;
+	color: $primary-color;
 	cursor: pointer;
 	width: 100%;
 	display: flex;

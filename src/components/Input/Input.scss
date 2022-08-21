@@ -1,3 +1,5 @@
+@import '../../../static/variables.scss';
+
 .input {
 	display: flex;
 	flex-direction: column;
@@ -12,20 +14,20 @@
 		font-weight: 500;
 		font-size: 9px;
 		line-height: 9px;
-		color: #999;
+		color: $disabled-color;
 		margin-bottom: 8px;
 	}
 
 	&__item {
 		border: none;
-		border-bottom: 1px solid #3369f3;
+		border-bottom: 1px solid $primary-color;
 		outline: none;
 
 		&::placeholder {
 			font-weight: 500;
 			font-size: 13px;
 			line-height: 13px;
-			color: #999;
+			color: $disabled-color;
 		}
 
 		&:focus::placeholder {
@@ -34,7 +36,7 @@
 	}
 
 	&__error {
-		color: #ff2f2f;
+		color: $error-color;
 		font-weight: 400;
 		font-size: 8px;
 		line-height: 8px;

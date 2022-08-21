@@ -1,3 +1,5 @@
+@import '../../../static/variables.scss';
+
 .form {
 	display: flex;
 	flex-direction: column;
@@ -27,7 +29,12 @@
 		font-weight: 500;
 		font-size: 11px;
 		line-height: 11px;
-		color: #3369f3;
+		color: $primary-color;
 		text-align: center;
+		transition: all .3s;
+
+		&:hover {
+			text-decoration: underline;
+		}
 	}
 }

@@ -1,3 +1,5 @@
+@import '../../../static/variables.scss';
+
 .profile {
 	display: flex;
 	flex-direction: column;
@@ -36,7 +38,7 @@
 			font-weight: 500;
 			font-size: 13px;
 			line-height: 14px;
-			color: #eee;
+			color: $bg-color;
 			border-radius: 50%;
 		}
 	}
@@ -49,7 +51,6 @@
 		font-weight: 600;
 		font-size: 16px;
 		line-height: 16px;
-		color: #1e1e1e;
 		margin-bottom: 60px;
 	}
 

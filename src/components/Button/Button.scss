@@ -1,6 +1,8 @@
+@import '../../../static/variables.scss';
+
 .button {
-	background-color: #3369f3;
-	color: #eee;
+	background-color: $primary-color;
+	color: $bg-color;
 	border-radius: 8px;
 	cursor: pointer;
 	width: 100%;
@@ -9,4 +11,8 @@
 	justify-content: center;
 	align-items: center;
 	border: none;
+	transition: all .3s;
+	&:hover {
+		opacity: .9;
+	}
 }
