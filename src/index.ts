@@ -6,7 +6,7 @@ import ChatsPage from './pages/Chats';
 import ProfilePage from './pages/Profile';
 
 window.addEventListener('DOMContentLoaded', () => {
-	const app = document.getElementById('app');
+	const app: HTMLElement = document.getElementById('app');
 
 	if (window.location.pathname === '/404') {
 		app.innerHTML = Error404Page;
