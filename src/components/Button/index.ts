@@ -11,8 +11,9 @@ export class Button extends Block {
         super('button', props);
 
         this.element?.classList.add('button');
+        this.element?.setAttribute('type', 'submit');
     }
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

@@ -18,7 +18,7 @@ export class Input extends Block {
         this.element?.classList.add('input');
     }
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

@@ -10,7 +10,7 @@ class Chats extends Block {
         this.element?.classList.add('chats');
     }
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     }
 };

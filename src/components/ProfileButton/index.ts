@@ -13,7 +13,7 @@ export class ProfileButton extends Block {
         this.element?.classList.add('profile-button');
     }
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

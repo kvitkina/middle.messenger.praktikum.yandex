@@ -13,7 +13,7 @@ export class ServiceError extends Block {
 
         this.element?.classList.add('service-error');
     }
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

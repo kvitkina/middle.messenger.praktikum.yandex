@@ -16,7 +16,7 @@ class ProfileInput extends Block {
         this.element?.classList.add('profile-input');
     }
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

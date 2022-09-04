@@ -17,7 +17,7 @@ export class Form extends Block {
         this.element?.classList.add('form');
     };
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props)
     }
 }

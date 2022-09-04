@@ -106,7 +106,7 @@ class Profile extends Block {
         this.element?.classList.add('profile');
     };
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     };
 };

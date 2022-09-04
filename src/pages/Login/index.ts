@@ -13,7 +13,7 @@ class Login extends Block {
         super('div', props);
     }
 
-    render() {
+    render(): DocumentFragment {
         return this.compile(tmpl, {form: this.props.form})
     }
 };

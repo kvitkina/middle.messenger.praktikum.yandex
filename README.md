@@ -6,6 +6,7 @@
 ### Используемые технологии
 
 > Handlebars
+> TS
 > Parcel
 > SCSS
 
