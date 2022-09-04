@@ -42,12 +42,17 @@ class Block {
 		const children: Record<string, Block> = {};
 
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
-			if (value instanceof Block) {
-				children[key] = value;
-			} else {
-				props[key] = value;
-			}
-		});
+            if (value instanceof Block) {
+                children[key] = value
+            } else if (
+                Array.isArray(value) &&
+                value.every(value => value instanceof Block)
+            ) {
+                children[key] = value;
+            } else {
+                props[key] = value;
+            }
+        })
 
 		return { props, children };
 	}
@@ -90,8 +95,6 @@ class Block {
 
 	public dispatchComponentDidMount(): void {
 		this.eventBus().emit(Block.EVENTS.FLOW_CDM);
-
-		Object.values(this.children).forEach((child) => child.dispatchComponentDidMount());
 	}
 
 	private _componentDidUpdate(oldProps: any, newProps: any) {
@@ -132,7 +135,9 @@ class Block {
         Object.entries(this.children).forEach(([name, component]) => {
             if (Array.isArray(component)) {
                 contextAndStubs[name] = [];
-                component.forEach(item => contextAndStubs[name][item] = `<div data-id="${component[item]._id}"></div>`);
+                for (let i = 0; i < component.length; i++) {
+                    contextAndStubs[name][i] = `<div data-id="${component[i].id}"></div>`
+                  }
             } else {
                 contextAndStubs[name] = `<div data-id="${component.id}"></div>`;
             }
@@ -146,12 +151,14 @@ class Block {
 
 		Object.entries(this.children).forEach(([_, component]) => {
             if (Array.isArray(component)) {
-                component.forEach(item => {
-                    const stub: HTMLElement | null = temp.content.querySelector(
-                        `[data-id="${component[item]._id}"]`
-                    )
-                    {stub && stub.replaceWith(component[item].getContent())}
-                })
+                for (let i = 0; i < component.length; i++) {
+                  const stub = temp.content.querySelector(
+                    `[data-id="${component[i].id}"]`
+                  )
+                  if (stub) {
+                    stub.replaceWith(component[i].getContent())
+                  }
+                }
             } else {
                 const stub: HTMLElement | null = temp.content.querySelector(`[data-id="${component.id}"]`);
 

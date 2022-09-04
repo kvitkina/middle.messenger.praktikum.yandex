@@ -1,6 +1,5 @@
-import Error404 from './Error404.hbs';
 import ServiseError from '../../components/ServiceError';
 
-export default Error404({
-	serviceError: ServiseError('404', 'Не туда попали'),
-});
+const Error404Page = new ServiseError({title: '404', subtitle: 'Не туда попали'});
+
+export default Error404Page;

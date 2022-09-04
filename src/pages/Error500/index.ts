@@ -1,6 +1,5 @@
-import Error500 from './Error500.hbs';
 import ServiseError from '../../components/ServiceError';
 
-export default Error500({
-	serviceError: ServiseError('500', 'Мы уже фиксим'),
-});
+export const Error500Page = new ServiseError({title: '500', subtitle: 'Мы уже фиксим'});
+
+export default Error500Page;

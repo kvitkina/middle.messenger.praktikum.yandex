@@ -6,24 +6,29 @@ import ChatsPage from './pages/Chats';
 import ProfilePage from './pages/Profile';
 
 window.addEventListener('DOMContentLoaded', () => {
-	const app: HTMLElement = document.getElementById('app');
-
-	if (window.location.pathname === '/404') {
-		app.innerHTML = Error404Page;
-	}
-	if (window.location.pathname === '/500') {
-		app.innerHTML = Error500Page;
-	}
-	if (window.location.pathname === '/') {
-		app.innerHTML = LoginPage;
-	}
-	if (window.location.pathname === '/signin') {
-		app.innerHTML = RegistrationPage;
-	}
-	if (window.location.pathname === '/chats') {
-		app.innerHTML = ChatsPage;
-	}
-	if (window.location.pathname === '/profile') {
-		app.innerHTML = ProfilePage;
-	}
+    const root = document.querySelector('#app')!;
+    if (window.location.pathname === '/') {
+        root.append(LoginPage.getContent()!);
+        LoginPage.dispatchComponentDidMount();
+    }
+    if (window.location.pathname === '/signin') {
+        root.append(RegistrationPage.getContent()!);
+        RegistrationPage.dispatchComponentDidMount();
+    }
+    if (window.location.pathname === '/500') {
+        root.append(Error500Page.getContent()!);
+        Error500Page.dispatchComponentDidMount();
+    }
+    if (window.location.pathname === '/404') {
+        root.append(Error404Page.getContent()!);
+        Error404Page.dispatchComponentDidMount();
+    }
+    if (window.location.pathname === '/profile') {
+        root.append(ProfilePage.getContent()!);
+        ProfilePage.dispatchComponentDidMount();
+    }
+    if (window.location.pathname === '/chats') {
+        root.append(ChatsPage.getContent()!);
+        ChatsPage.dispatchComponentDidMount();
+    }
 });

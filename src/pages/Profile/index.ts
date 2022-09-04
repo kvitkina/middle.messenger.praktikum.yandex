@@ -1,10 +1,27 @@
 import tmpl from './Profile.hbs';
-import ProfileButton from '../../components/ProfileButton';
-import ProfileInput from './ProfileInput';
+import {ProfileButton} from '../../components/ProfileButton';
+import ProfileInput, { Input } from './ProfileInput';
 import Button from '../../components/Button';
 import './Profile.scss';
+import Block from '../../utils/Block';
 
-const User = {
+interface Props {
+    user: User;
+    inputs: Object[];
+    actions:  Object[];
+    saveButton: Object;
+};
+
+export interface User {
+    email: string;
+    login: string;
+    first_name: string;
+    second_name: string;
+    phone: string;
+    display_name: string;
+};
+
+const user: User = {
 	email: 'pochta@yandex.ru',
 	login: 'kvitkina',
 	first_name: 'Ирина',
@@ -13,80 +30,93 @@ const User = {
 	display_name: 'kvitkina',
 };
 
-const profileInputs = [
+const profileInputs: Input[] = [
 	{
 		label: 'Почта',
 		type: 'email',
-		value: `${User.email}`,
+		value: `${user.email}`,
 		name: 'email',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Логин',
 		type: 'text',
-		value: `${User.login}`,
+		value: `${user.login}`,
 		name: 'login',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Имя',
 		type: 'text',
-		value: `${User.first_name}`,
+		value: `${user.first_name}`,
 		name: 'first_name',
-		disabled: true,
+		// disabled: true,
 	},
 	{
 		label: 'Фамилия',
 		type: 'text',
-		value: `${User.second_name}`,
+		value: `${user.second_name}`,
 		name: 'second_name',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Имя в чате',
 		type: 'text',
-		value: `${User.display_name}`,
+		value: `${user.display_name}`,
 		name: 'display_name',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Телефон',
 		type: 'phone',
-		value: `${User.phone}`,
+		value: `${user.phone}`,
 		name: 'phone',
-		disabled: false,
+		// disabled: false,
 	},
 ];
 
-const passwordInputs = [
+const passwordInputs: Input[] = [
 	{
 		label: 'Старый пароль',
 		type: 'password',
 		value: '',
 		name: 'oldPassword',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Новый пароль',
 		type: 'password',
 		value: '',
 		name: 'newPassword',
-		disabled: false,
+		// disabled: false,
 	},
 	{
 		label: 'Повторите новый пароль',
 		type: 'password',
 		value: '',
 		name: 'newPassword',
-		disabled: false,
+		// disabled: false,
 	},
 ];
 
-const Profile = tmpl({
-	user: User,
-	inputs: profileInputs.map((item) => ProfileInput(item)),
-	actions: [ProfileButton('Изменить данные'), ProfileButton('Изменить пароль')],
-	saveButton: Button('Сохранить'),
+class Profile extends Block {
+    constructor(props: Props) {
+        super('section', props);
+
+        this.element?.classList.add('profile');
+    };
+
+    render() {
+        return this.compile(tmpl, this.props);
+    };
+};
+
+
+const ProfilePage = new Profile({
+	user,
+	inputs: profileInputs.map((item) => new ProfileInput(item)),
+	actions: [new ProfileButton({title: 'Изменить данные'}), new ProfileButton({title: 'Изменить пароль'})],
+	saveButton: new Button({title: 'Сохранить'}),
 });
 
-export default Profile;
+export default ProfilePage;

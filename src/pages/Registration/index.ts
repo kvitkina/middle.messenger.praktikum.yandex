@@ -1,22 +1,39 @@
-import Registration from './Registration.hbs';
+import tmpl from './Registration.hbs';
 import Form from '../../components/Form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
+import Block from '../../utils/Block';
 
-export default Registration({
-	form: Form(
-		'Регистрация',
-		[
-			Input('Почта', 'email', '', 'email', 'Неверная почта'),
-			Input('Логин', 'text', '', 'login', 'Неверный логин'),
-			Input('Имя', 'text', '', 'first_name', 'Введите имя'),
-			Input('Фамилия', 'text', '', 'second_name', 'Введите фамилию'),
-			Input('Телефон', 'phone', '', 'phone', 'Введите номер телефона'),
-			Input('Пароль', 'password', '', 'password', 'Неверный пароль'),
-			Input('Пароль еще раз', 'password', '', 'confirmPassword', 'Пароли не совпадают'),
-		],
-		Button('Зарегистрироваться'),
-		'Войти',
-		'/'
-	),
+interface Props {
+    form: Object;
+}
+
+class Registration extends Block {
+    constructor(props: Props) {
+        super('div', props);
+    }
+
+    render() {
+        return this.compile(tmpl, {form: this.props.form})
+    }
+};
+
+export const RegistrationPage = new Registration({
+    form: new Form({
+        title: 'Регистрация',
+        inputs: [
+            new Input({label: 'Почта', type: 'email', value: '', name: 'email', error: 'Неверная почта'}),
+			new Input({label: 'Логин', type: 'text',value:  '', name: 'login', error: 'Неверный логин'}),
+			new Input({label: 'Имя', type: 'text', value: '', name: 'first_name', error: 'Введите имя'}),
+			new Input({label: 'Фамилия', type: 'text', value: '', name: 'second_name', error: 'Введите фамилию'}),
+			new Input({label: 'Телефон', type: 'phone', value: '', name: 'phone', error: 'Введите номер телефона'}),
+			new Input({label: 'Пароль', type: 'password', value: '', name: 'password', error: 'Неверный пароль'}),
+			new Input({label: 'Пароль еще раз', type: 'password', value: '', name: 'confirmPassword', error: 'Пароли не совпадают'}),
+        ],
+        linkTitle: 'Войти',
+        linkHref:'/',
+        button: new Button({title: 'Зарегистрироваться'}),
+    })
 });
+
+export default RegistrationPage;
