@@ -21,7 +21,7 @@
 		font-weight: 500;
 		font-size: 13px;
 		line-height: 13px;
-		color: $disabled-color;
+		color: $secondary-text-color;
 		text-align: end;
 		outline: none;
 
@@ -29,7 +29,7 @@
 			font-weight: 500;
 			font-size: 13px;
 			line-height: 13px;
-			color: $disabled-color;
+			color: $secondary-text-color;
 		}
 
 		&:focus::placeholder {

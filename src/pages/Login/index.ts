@@ -11,6 +11,7 @@ interface Props {
 class Login extends Block {
     constructor(props: Props) {
         super('div', props);
+        console.log(props)
     }
 
     render(): DocumentFragment {

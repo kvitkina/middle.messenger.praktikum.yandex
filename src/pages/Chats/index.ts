@@ -1,10 +1,13 @@
 import Block from '../../utils/Block';
 import tmpl from './Chats.hbs';
 import './Chats.scss';
+import Chat from './Chat';
 
-
+interface ChatsProps {
+    chatsList: any[];
+}
 class Chats extends Block {
-    constructor(props) {
+    constructor(props: ChatsProps) {
         super('div', props);
 
         this.element?.classList.add('chats');
@@ -15,6 +18,10 @@ class Chats extends Block {
     }
 };
 
-const ChatsPage = new Chats({});
+const ChatsPage = new Chats({chatsList: [
+    new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '10:49', newMessagesCounter: 2}),
+    new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '10:49', newMessagesCounter: 2}),
+    new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '12:00', newMessagesCounter: 20}),
+]});
 
 export default ChatsPage;

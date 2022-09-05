@@ -14,7 +14,7 @@
 		font-weight: 500;
 		font-size: 9px;
 		line-height: 9px;
-		color: $disabled-color;
+		color: $secondary-text-color;
 		margin-bottom: 8px;
 	}
 
@@ -27,7 +27,7 @@
 			font-weight: 500;
 			font-size: 13px;
 			line-height: 13px;
-			color: $disabled-color;
+			color: $secondary-text-color;
 		}
 
 		&:focus::placeholder {
