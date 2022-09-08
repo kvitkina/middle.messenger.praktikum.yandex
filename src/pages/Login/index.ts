@@ -11,7 +11,8 @@ interface Props {
 class Login extends Block {
     constructor(props: Props) {
         super('div', props);
-        console.log(props)
+
+        this.element?.classList.add('.login-form');
     }
 
     render(): DocumentFragment {
@@ -23,8 +24,8 @@ export const LoginPage = new Login({
     form: new Form({
         title: 'Вход',
         inputs: [
-            new Input({label: 'Логин', type: 'text', value: '', name: 'login', error: 'Неверный логин'}),
-            new Input({label: 'Пароль', type: 'password', value: '', name: 'password', error: 'Неверный пароль'})
+            new Input({label: 'Логин', type: 'text', value: '', name: 'login'}),
+            new Input({label: 'Пароль', type: 'password', value: '', name: 'password'})
         ],
         linkTitle: 'Нет аккаунта?',
         linkHref:'/signin',

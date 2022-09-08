@@ -1,7 +1,7 @@
 <button class='profile__avatar'></button>
 <h2 class='profile__name'>{{user.first_name}}</h2>
 
-<div class='profile__container'>
+<form class='profile__container'>
     <div class='profile__form'>
         {{#each inputs}}
             {{{this}}}
@@ -14,7 +14,8 @@
     <div class='profile__exit-link'>
         <a href='/' class='profile__link'>Выйти</a>
     </div>
-</div>
-<div class='profile__save-button'>
-    {{{saveButton}}}
-</div>
+    <div class='profile__save-button'>
+        {{{saveButton}}}
+    </div>
+</form>
+

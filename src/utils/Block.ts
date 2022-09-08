@@ -2,6 +2,10 @@ import { EventBus } from './EventBus';
 import { nanoid } from 'nanoid';
 import { TemplateDelegate } from 'handlebars';
 
+type Props = Record<string, any>;
+type Children = Record<string, Block>;
+type PropsWithChildren = Props | Children;
+
 class Block {
 	static EVENTS = {
 		INIT: 'init',
@@ -11,13 +15,13 @@ class Block {
 	};
 
 	public id = nanoid(6);
-	protected props: Record<string, unknown>;
-	public children: Record<string, Block>;
+	protected props: Props;
+	public children: Children;
 	private eventBus: () => EventBus;
 	private _element: HTMLElement | null = null;
-	private _meta: { tagName: string; props: any };
+	private _meta: { tagName: string; props: Props };
 
-	constructor(tagName = 'div', propsWithChildren: any = {}) {
+	constructor(tagName = 'div', propsWithChildren: PropsWithChildren = {}) {
 		const eventBus = new EventBus();
 
 		const { props, children } = this._getChildrenAndProps(propsWithChildren);
@@ -37,9 +41,9 @@ class Block {
 		eventBus.emit(Block.EVENTS.INIT);
 	}
 
-	_getChildrenAndProps(childrenAndProps: any) {
-		const props: Record<string, any> = {};
-		const children: Record<string, Block> = {};
+	_getChildrenAndProps(childrenAndProps: PropsWithChildren) {
+		const props: Props = {};
+		const children: Children = {};
 
 		Object.entries(childrenAndProps).forEach(([key, value]) => {
             if (value instanceof Block) {
@@ -103,11 +107,11 @@ class Block {
 		}
 	}
 
-	protected componentDidUpdate(oldProps: any, newProps: any): boolean {
+	protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
 		return true;
 	}
 
-	setProps = (nextProps: any) => {
+	setProps = (nextProps: Props) => {
 		if (!nextProps) {
 			return;
 		}
@@ -203,7 +207,7 @@ class Block {
 		});
 	}
 
-	_createDocumentElement(tagName: string) {
+	_createDocumentElement(tagName: string): HTMLElement {
 		return document.createElement(tagName);
 	}
 

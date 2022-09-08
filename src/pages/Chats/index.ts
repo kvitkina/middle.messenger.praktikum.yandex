@@ -4,12 +4,11 @@ import './Chats.scss';
 import Chat from './Chat';
 
 interface ChatsProps {
-    chatsList: any[];
+    chatsList: Block[];
 }
 class Chats extends Block {
     constructor(props: ChatsProps) {
         super('div', props);
-
         this.element?.classList.add('chats');
     }
 
@@ -21,7 +20,7 @@ class Chats extends Block {
 const ChatsPage = new Chats({chatsList: [
     new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '10:49', newMessagesCounter: 2}),
     new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '10:49', newMessagesCounter: 2}),
-    new Chat({avatar: '', name: 'Иван', lastMessage: 'Так увлёкся работой по курсу, что совсем забыл его анонсир... Так увлёкся работой по курсу, что совсем забыл его анонсир...', lastMessageTime: '12:00', newMessagesCounter: 20}),
+    new Chat({avatar: '', name: 'Иван', lastMessage: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...', lastMessageTime: '12:00', newMessagesCounter: 20}),
 ]});
 
 export default ChatsPage;

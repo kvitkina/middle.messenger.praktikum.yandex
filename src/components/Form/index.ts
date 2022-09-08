@@ -1,13 +1,17 @@
 import Block from '../../utils/Block';
+import { onFormSubmit } from '../../utils/utils';
 import tmpl from './Form.hbs';
 import './Form.scss';
 
 export interface FormProps {
     title: string;
-    inputs: any[];
+    inputs: Block[];
     linkTitle: string;
     linkHref: string;
-    button: any;
+    button: Block;
+    events?: {
+        submit: (e: SubmitEvent) => void;
+    }
 };
 
 export class Form extends Block {
@@ -15,10 +19,13 @@ export class Form extends Block {
         super('form', props);
 
         this.element?.classList.add('form');
+        this.props.events = {
+            submit: (e: Event) => onFormSubmit(e)
+        }
     };
 
     render(): DocumentFragment {
-        return this.compile(tmpl, this.props)
+        return this.compile(tmpl, this.props);
     }
 }
 
