@@ -1,4 +1,4 @@
-type EventHandler = Array<(...args: string[]) => void>;
+type EventHandler = Array<(...args: unknown[]) => void>;
 
 interface Listeners {
     [key: string]: EventHandler;
@@ -27,7 +27,7 @@ export class EventBus {
         this.listeners[event] = this.listeners[event].filter(listener => listener !== callback);
     }
 
-    emit(event: string, ...args: string[]) {
+    emit(event: string, ...args: unknown[]) {
         if (!this.listeners[event]) {
             throw new Error(`Нет события: ${event}`);
         }

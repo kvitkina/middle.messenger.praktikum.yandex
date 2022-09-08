@@ -7,15 +7,15 @@
             {{{this}}}
         {{/each}}
     </div>
-
-    {{#each actions}}
-        {{{this}}}
-    {{/each}}
-    <div class='profile__exit-link'>
-        <a href='/' class='profile__link'>Выйти</a>
-    </div>
     <div class='profile__save-button'>
         {{{saveButton}}}
     </div>
 </form>
+
+{{#each actions}}
+    {{{this}}}
+{{/each}}
+<div class='profile__exit-link'>
+    <a href='/' class='profile__link'>Выйти</a>
+</div>
 
