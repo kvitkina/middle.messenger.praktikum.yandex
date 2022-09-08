@@ -15,7 +15,7 @@ export class Button extends Block {
     }
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
-    };
-};
+    }
+}
 
 export default Button;

@@ -15,7 +15,7 @@ export class ServiceError extends Block {
     }
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
-    };
-};
+    }
+}
 
 export default ServiceError;

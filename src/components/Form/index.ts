@@ -12,7 +12,7 @@ export interface FormProps {
     events?: {
         submit: (e: SubmitEvent) => void;
     }
-};
+}
 
 export class Form extends Block {
     constructor(props: FormProps) {
@@ -21,8 +21,8 @@ export class Form extends Block {
         this.element?.classList.add('form');
         this.props.events = {
             submit: (e: Event) => onFormSubmit(e)
-        }
-    };
+        };
+    }
 
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);

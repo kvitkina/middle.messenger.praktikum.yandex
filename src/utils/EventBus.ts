@@ -1,5 +1,7 @@
+type EventHandler = Array<(...args: string[]) => void>;
+
 interface Listeners {
-    [key: string]: Function[];
+    [key: string]: EventHandler;
 }
 
 export class EventBus {

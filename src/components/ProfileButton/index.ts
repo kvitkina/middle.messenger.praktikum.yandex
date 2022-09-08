@@ -15,5 +15,5 @@ export class ProfileButton extends Block {
 
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
-    };
-};
+    }
+}

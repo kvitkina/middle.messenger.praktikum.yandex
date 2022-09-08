@@ -1,7 +1,7 @@
 interface RegExpContent {
     errorMessage: string;
     expression: RegExp;
-};
+}
 
 interface TRegExp {
     [key: string]: RegExpContent;
@@ -44,4 +44,4 @@ export const REGEXP: TRegExp = {
         errorMessage: 'Не должно быть пустым',
         expression: /^[^]+$/
     },
-  };
+};

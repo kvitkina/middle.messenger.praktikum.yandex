@@ -28,7 +28,7 @@ export class Input extends Block {
         this.props.events = {
             focusin: (e: Event): void => this.onFocus(e),
             focusout: (e: Event): void => this.onBlur(e),
-        }
+        };
     }
 
 
@@ -42,7 +42,7 @@ export class Input extends Block {
 
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
-    };
-};
+    }
+}
 
 export default Input;

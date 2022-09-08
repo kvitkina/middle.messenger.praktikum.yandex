@@ -5,7 +5,7 @@ import Input from '../../components/Input';
 import Block from '../../utils/Block';
 
 interface Props {
-    form: Object;
+    form: Block;
 }
 
 class Login extends Block {
@@ -16,9 +16,9 @@ class Login extends Block {
     }
 
     render(): DocumentFragment {
-        return this.compile(tmpl, {form: this.props.form})
+        return this.compile(tmpl, {form: this.props.form});
     }
-};
+}
 
 export const LoginPage = new Login({
     form: new Form({

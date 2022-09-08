@@ -27,7 +27,7 @@ class ProfileInput extends Block {
         this.props.events = {
             focusin: (e: Event): void => this.onFocus(e),
             focusout: (e: Event): void => this.onBlur(e),
-        }
+        };
     }
 
     onFocus = (e: Event): void => {
@@ -40,8 +40,8 @@ class ProfileInput extends Block {
 
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
-    };
-};
+    }
+}
 
 export default ProfileInput;
 

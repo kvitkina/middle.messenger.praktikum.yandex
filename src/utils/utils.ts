@@ -1,9 +1,9 @@
-import { REGEXP } from "./constants";
+import { REGEXP } from './constants';
 
 export interface ValidationObject {
     errorClass: string;
     errorClassVisible: string
-};
+}
 
 export const inputValidator = (event: Event, element: HTMLElement, validationObject: ValidationObject): void => {
     const { errorClass, errorClassVisible } = validationObject;
@@ -19,7 +19,7 @@ export const inputValidator = (event: Event, element: HTMLElement, validationObj
     } else {
         errorElement!.classList.add(errorClassVisible);
         errorElement!.textContent = REGEXP[item.name].errorMessage;
-    };
+    }
 };
 
 export const onFormSubmit = (e: Event): void => {
@@ -31,6 +31,7 @@ export const onFormSubmit = (e: Event): void => {
 
     if (hasInvalidInput) {
         return;
-    }   inputs.forEach(input => formValues[input.name] = input.value);
-        console.log(formValues);
+    }
+    inputs.forEach(input => formValues[input.name] = input.value);
+    console.log(formValues);
 };
