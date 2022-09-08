@@ -11,7 +11,7 @@ export interface FormProps {
     button: Block;
     events?: {
         submit: (e: SubmitEvent) => void;
-    }
+    };
 }
 
 export class Form extends Block {
@@ -20,7 +20,7 @@ export class Form extends Block {
 
         this.element?.classList.add('form');
         this.props.events = {
-            submit: (e: Event) => onFormSubmit(e)
+            submit: (e: Event) => onFormSubmit(e),
         };
     }
 

@@ -1,34 +1,40 @@
-<div class="chats__list-container">
-    <a href="/profile" class="chats__button">
+<div class='chats__list-container'>
+    <a href='/profile' class='chats__button'>
         Профиль
-        <div class="chats__button-arrow"></div>
+        <div class='chats__button-arrow'></div>
     </a>
-    <input type="text" class="chats__input" placeholder="Поиск" name='search' />
+    <input type='text' class='chats__input' placeholder='Поиск' name='search' />
     {{#each chatsList}}
         {{{this}}}
     {{/each}}
 </div>
 
-<div class="chats__detail">
-    <div class="chats__detail-header">
-        <img src='{{avatar}}' class="chats__avatar" alt='' />
-        <h3 class="chats__name">{{currentChatName}}</h3>
-        <ul class="chats__actions-icon">
-            <li class="chats__dot"></li>
-            <li class="chats__dot"></li>
-            <li class="chats__dot"></li>
+<div class='chats__detail'>
+    <div class='chats__detail-header'>
+        <img src='{{avatar}}' class='chats__avatar' alt='' />
+        <h3 class='chats__name'>{{currentChatName}}</h3>
+        <ul class='chats__actions-icon'>
+            <li class='chats__dot'></li>
+            <li class='chats__dot'></li>
+            <li class='chats__dot'></li>
         </ul>
     </div>
 
-    <div class="chats__detail-messages">
+    <div class='chats__detail-messages'>
 
     </div>
-    <div class="chats__detail-footer">
-        <div class="chats__clip"></div>
-        <input type="text" name='message' id='message' placeholder="Сообщение" class='chats__input chats__input_message' />
+    <div class='chats__detail-footer'>
+        <div class='chats__clip'></div>
+        <input
+            type='text'
+            name='message'
+            id='message'
+            placeholder='Сообщение'
+            class='chats__input chats__input_message'
+        />
         <button class='chats__send-button'>
-            <img class='chats__arrow-icon' alt="" />
+            <img class='chats__arrow-icon' alt='' />
         </button>
     </div>
-    {{!-- <p class='chats__placeholder'>Выберите чат чтобы отправить сообщение</p> --}}
+    {{! <p class='chats__placeholder'>Выберите чат чтобы отправить сообщение</p> }}
 </div>

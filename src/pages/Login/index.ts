@@ -16,7 +16,7 @@ class Login extends Block {
     }
 
     render(): DocumentFragment {
-        return this.compile(tmpl, {form: this.props.form});
+        return this.compile(tmpl, { form: this.props.form });
     }
 }
 
@@ -24,13 +24,13 @@ export const LoginPage = new Login({
     form: new Form({
         title: 'Вход',
         inputs: [
-            new Input({label: 'Логин', type: 'text', value: '', name: 'login'}),
-            new Input({label: 'Пароль', type: 'password', value: '', name: 'password'})
+            new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
+            new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
         ],
         linkTitle: 'Нет аккаунта?',
-        linkHref:'/signin',
-        button: new Button({title: 'Вход'}),
-    })
+        linkHref: '/signin',
+        button: new Button({ title: 'Вход' }),
+    }),
 });
 
 export default LoginPage;

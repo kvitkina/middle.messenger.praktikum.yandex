@@ -20,8 +20,20 @@ class Chats extends Block {
 
 const ChatsPage = new Chats({
     chatsList: [
-        new Chat({avatar: '', name: 'Иван', lastMessage: 'Круто', lastMessageTime: '10:49', newMessagesCounter: 2}),
-        new Chat({avatar: '', name: 'Мария', lastMessage: 'Спасибо!', lastMessageTime: '12:49', newMessagesCounter: 1}),
+        new Chat({
+            avatar: '',
+            name: 'Иван',
+            lastMessage: 'Круто',
+            lastMessageTime: '10:49',
+            newMessagesCounter: 2,
+        }),
+        new Chat({
+            avatar: '',
+            name: 'Мария',
+            lastMessage: 'Спасибо!',
+            lastMessageTime: '12:49',
+            newMessagesCounter: 1,
+        }),
         new Chat({
             avatar: '',
             name: 'Рабочий чат',

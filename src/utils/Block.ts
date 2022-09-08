@@ -48,10 +48,7 @@ class Block {
         Object.entries(childrenAndProps).forEach(([key, value]) => {
             if (value instanceof Block) {
                 children[key] = value;
-            } else if (
-                Array.isArray(value) &&
-                value.every(value => value instanceof Block)
-            ) {
+            } else if (Array.isArray(value) && value.every((value) => value instanceof Block)) {
                 children[key] = value;
             } else {
                 props[key] = value;
@@ -126,11 +123,11 @@ class Block {
     private _render(): void {
         const fragment = this.render();
 
-		this._element!.innerHTML = '';
+        this._element!.innerHTML = '';
 
-		this._element!.append(fragment);
+        this._element!.append(fragment);
 
-		this._addEvents();
+        this._addEvents();
     }
 
     protected compile(template: TemplateDelegate, context: any): DocumentFragment {
@@ -156,15 +153,15 @@ class Block {
         Object.entries(this.children).forEach(([_, component]) => {
             if (Array.isArray(component)) {
                 for (let i = 0; i < component.length; i++) {
-                    const stub = temp.content.querySelector(
-                        `[data-id="${component[i].id}"]`
-                    );
+                    const stub = temp.content.querySelector(`[data-id="${component[i].id}"]`);
                     if (stub) {
                         stub.replaceWith(component[i].getContent());
                     }
                 }
             } else {
-                const stub: HTMLElement | null = temp.content.querySelector(`[data-id="${component.id}"]`);
+                const stub: HTMLElement | null = temp.content.querySelector(
+                    `[data-id="${component.id}"]`
+                );
 
                 if (!stub) {
                     return;
@@ -212,11 +209,11 @@ class Block {
     }
 
     show(): void {
-		this.getContent()!.style.display = 'block';
+        this.getContent()!.style.display = 'block';
     }
 
     hide(): void {
-		this.getContent()!.style.display = 'none';
+        this.getContent()!.style.display = 'none';
     }
 }
 

@@ -1,82 +1,82 @@
 @import '../../../static/variables.scss';
 
 .profile {
-	display: flex;
-	flex-direction: column;
-	align-items: center;
-	min-width: 510px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    min-width: 510px;
 
-	&__avatar {
-		border-radius: 50%;
-		object-fit: cover;
-		background-color: #efefef;
-		background-repeat: no-repeat;
-		background-position: center;
-		background-image: url('../../../static/images/avatar.svg');
-		cursor: pointer;
-		padding: 0;
-		margin: 0 0 21px;
-		border: 0;
-		width: 130px;
-		height: 130px;
-		position: relative;
+    &__avatar {
+        border-radius: 50%;
+        object-fit: cover;
+        background-color: #efefef;
+        background-repeat: no-repeat;
+        background-position: center;
+        background-image: url('../../../static/images/avatar.svg');
+        cursor: pointer;
+        padding: 0;
+        margin: 0 0 21px;
+        border: 0;
+        width: 130px;
+        height: 130px;
+        position: relative;
 
-		&:after {
-			width: 100%;
-			background-color: rgba(0, 0, 0, 0.5);
-			background-position: center;
-			background-repeat: no-repeat;
-			position: absolute;
-			content: 'Поменять аватар';
-			top: 0;
-			left: 0;
-			bottom: 0;
-			right: 0;
-			display: none;
-			align-items: center;
-			justify-content: center;
-			font-weight: 500;
-			font-size: 13px;
-			line-height: 14px;
-			color: $bg-color;
-			border-radius: 50%;
-		}
-	}
+        &:after {
+            width: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            background-position: center;
+            background-repeat: no-repeat;
+            position: absolute;
+            content: 'Поменять аватар';
+            top: 0;
+            left: 0;
+            bottom: 0;
+            right: 0;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            font-weight: 500;
+            font-size: 13px;
+            line-height: 14px;
+            color: $bg-color;
+            border-radius: 50%;
+        }
+    }
 
-	&__avatar:hover::after {
-		display: flex;
-	}
+    &__avatar:hover::after {
+        display: flex;
+    }
 
-	&__name {
-		font-weight: 600;
-		font-size: 16px;
-		line-height: 16px;
-		margin-bottom: 60px;
-	}
+    &__name {
+        font-weight: 600;
+        font-size: 16px;
+        line-height: 16px;
+        margin-bottom: 60px;
+    }
 
-	&__container {
-		align-self: flex-start;
-		width: 100%;
-	}
+    &__container {
+        align-self: flex-start;
+        width: 100%;
+    }
 
-	&__exit-link {
-		margin-top: 10px;
-	}
+    &__exit-link {
+        margin-top: 10px;
+    }
 
-	&__link {
-		font-weight: 500;
-		font-size: 13px;
-		line-height: 13px;
-		color: #ff0000;
-		text-decoration: none;
-	}
+    &__link {
+        font-weight: 500;
+        font-size: 13px;
+        line-height: 13px;
+        color: #ff0000;
+        text-decoration: none;
+    }
 
-	&__form {
-		margin-bottom: 60px;
-	}
+    &__form {
+        margin-bottom: 60px;
+    }
 
-	&__save-button {
-		width: 280px;
+    &__save-button {
+        width: 280px;
         margin: 0 auto;
-	}
+    }
 }

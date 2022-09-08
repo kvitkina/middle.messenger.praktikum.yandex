@@ -4,10 +4,10 @@ import tmpl from './Input.hbs';
 
 import './Input.scss';
 
-const validationObject: ValidationObject = ({
+const validationObject: ValidationObject = {
     errorClass: '.input__error',
     errorClassVisible: 'input__error_visible',
-});
+};
 
 export interface InputProps {
     label: string;
@@ -17,7 +17,7 @@ export interface InputProps {
     events?: {
         focusin: (e: Event) => void;
         focusout: (e: Event) => void;
-    }
+    };
 }
 
 export class Input extends Block {
@@ -30,7 +30,6 @@ export class Input extends Block {
             focusout: (e: Event): void => this.onBlur(e),
         };
     }
-
 
     onFocus = (e: Event): void => {
         inputValidator(e, this.element!, validationObject);

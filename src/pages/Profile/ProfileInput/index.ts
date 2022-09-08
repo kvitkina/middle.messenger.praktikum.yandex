@@ -3,10 +3,10 @@ import { inputValidator, ValidationObject } from '../../../utils/utils';
 import tmpl from './ProfileInput.hbs';
 import './ProfileInput.scss';
 
-const validationObject: ValidationObject = ({
+const validationObject: ValidationObject = {
     errorClass: '.profile-input__error',
     errorClassVisible: 'profile-input__error_visible',
-});
+};
 
 export interface Input {
     label: string;
@@ -16,7 +16,7 @@ export interface Input {
     events?: {
         focusin: (e: Event) => void;
         focusout: (e: Event) => void;
-    }
+    };
 }
 
 class ProfileInput extends Block {
@@ -44,5 +44,3 @@ class ProfileInput extends Block {
 }
 
 export default ProfileInput;
-
-

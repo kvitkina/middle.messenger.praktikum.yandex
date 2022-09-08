@@ -1,5 +1,5 @@
 import tmpl from './Profile.hbs';
-import {ProfileButton} from '../../components/ProfileButton';
+import { ProfileButton } from '../../components/ProfileButton';
 import ProfileInput, { Input } from './ProfileInput';
 import Button from '../../components/Button';
 import './Profile.scss';
@@ -9,11 +9,11 @@ import { onFormSubmit } from '../../utils/utils';
 interface Props {
     user: User;
     inputs: Block[];
-    actions:  Block[];
+    actions: Block[];
     saveButton: Block;
     events: {
         submit: (e: SubmitEvent) => void;
-    }
+    };
 }
 
 export interface User {
@@ -105,16 +105,18 @@ class Profile extends Block {
     }
 }
 
-
 const ProfilePage = new Profile({
     user,
     inputs: profileInputs.map((item) => new ProfileInput(item)),
-    actions: [new ProfileButton({title: 'Изменить данные'}), new ProfileButton({title: 'Изменить пароль'})],
-    saveButton: new Button({title: 'Сохранить'}),
+    actions: [
+        new ProfileButton({ title: 'Изменить данные' }),
+        new ProfileButton({ title: 'Изменить пароль' }),
+    ],
+    saveButton: new Button({ title: 'Сохранить' }),
     events: {
         submit: (e) => {
             onFormSubmit(e);
-        }
+        },
     },
 });
 
