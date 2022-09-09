@@ -1,0 +1,18 @@
+{
+    "extends": "stylelint-config-standard-scss",
+    "rules": {
+        "color-hex-case": "lower",
+        "string-quotes": "single",
+        "color-hex-length": "long",
+        "scss/at-import-partial-extension": "always",
+        "indentation": [
+            4,
+            {
+                "baseIndentLevel": 0
+            }
+        ]
+    },
+    "ignoreFiles": [
+        "build/*"
+    ]
+}

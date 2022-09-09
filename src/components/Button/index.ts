@@ -6,7 +6,7 @@ interface Props {
     title: string;
 }
 
-export class Button extends Block {
+export class Button extends Block<Props> {
     constructor(props: Props) {
         super('button', props);
 

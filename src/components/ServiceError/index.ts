@@ -7,7 +7,7 @@ export interface ServiceErrorProps {
     subtitle: string;
 }
 
-export class ServiceError extends Block {
+export class ServiceError extends Block<ServiceErrorProps> {
     constructor(props: ServiceErrorProps) {
         super('div', props);
 

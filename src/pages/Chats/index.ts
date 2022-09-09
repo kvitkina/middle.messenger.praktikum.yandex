@@ -7,7 +7,7 @@ interface ChatsProps {
     chatsList: Block[];
     currentChatName: string;
 }
-class Chats extends Block {
+class Chats extends Block<ChatsProps> {
     constructor(props: ChatsProps) {
         super('div', props);
         this.element?.classList.add('chats');

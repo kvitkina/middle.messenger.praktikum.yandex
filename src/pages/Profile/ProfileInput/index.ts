@@ -19,7 +19,7 @@ export interface Input {
     };
 }
 
-class ProfileInput extends Block {
+class ProfileInput extends Block<Input> {
     constructor(props: Input) {
         super('div', props);
 

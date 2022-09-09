@@ -10,7 +10,7 @@ interface Props {
     newMessagesCounter: number;
 }
 
-class Chat extends Block {
+class Chat extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
 

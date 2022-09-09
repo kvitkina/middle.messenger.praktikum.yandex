@@ -14,7 +14,7 @@ export interface FormProps {
     };
 }
 
-export class Form extends Block {
+export class Form extends Block<FormProps> {
     constructor(props: FormProps) {
         super('form', props);
 

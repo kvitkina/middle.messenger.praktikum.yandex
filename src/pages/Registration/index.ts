@@ -8,7 +8,7 @@ interface Props {
     form: Block;
 }
 
-class Registration extends Block {
+class Registration extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
     }

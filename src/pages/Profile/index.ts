@@ -94,7 +94,7 @@ const passwordInputs: Input[] = [
     },
 ];
 
-class Profile extends Block {
+class Profile extends Block<Props> {
     constructor(props: Props) {
         super('section', props);
         this.element?.classList.add('profile');

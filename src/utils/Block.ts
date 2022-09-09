@@ -4,9 +4,8 @@ import { TemplateDelegate } from 'handlebars';
 
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
-type PropsWithChildren = Props | Children;
 
-class Block {
+class Block<P extends Props = any>  {
     static EVENTS = {
         INIT: 'init',
         FLOW_CDM: 'flow:component-did-mount',
@@ -15,20 +14,20 @@ class Block {
     };
 
     public id = nanoid(6);
-    protected props: Props;
+    protected props: P;
     public children: Children;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
-    private _meta: { tagName: string; props: Props };
+    private _meta: { tagName: string; props: P };
 
-    constructor(tagName = 'div', propsWithChildren: PropsWithChildren = {}) {
+    constructor(tagName = 'div', propsWithChildren: P) {
         const eventBus = new EventBus();
 
         const { props, children } = this._getChildrenAndProps(propsWithChildren);
 
         this._meta = {
             tagName,
-            props,
+            props: props as P,
         };
 
         this.children = children;
@@ -41,7 +40,7 @@ class Block {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: PropsWithChildren) {
+    _getChildrenAndProps(childrenAndProps: P) {
         const props: Props = {};
         const children: Children = {};
 
@@ -51,7 +50,7 @@ class Block {
             } else if (Array.isArray(value) && value.every((value) => value instanceof Block)) {
                 children[key] = value;
             } else {
-                props[key] = value;
+                props[key as string] = value;
             }
         });
 
@@ -59,7 +58,7 @@ class Block {
     }
 
     _addEvents(): void {
-        const { events = {} } = this.props as { events: Record<string, () => void> };
+        const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
         Object.keys(events).forEach((eventName) => {
             this._element?.addEventListener(eventName, events[eventName]);
@@ -98,17 +97,17 @@ class Block {
         this.eventBus().emit(Block.EVENTS.FLOW_CDM);
     }
 
-    private _componentDidUpdate(oldProps: Props, newProps: Props) {
+    private _componentDidUpdate(oldProps: P, newProps: P) {
         if (this.componentDidUpdate(oldProps, newProps)) {
             this.eventBus().emit(Block.EVENTS.FLOW_RENDER);
         }
     }
 
-    protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+    protected componentDidUpdate(oldProps: P, newProps: P): boolean {
         return true;
     }
 
-    setProps = (nextProps: Props) => {
+    setProps = (nextProps: P) => {
         if (!nextProps) {
             return;
         }

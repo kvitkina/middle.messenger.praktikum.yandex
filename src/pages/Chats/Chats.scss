@@ -122,7 +122,6 @@
         list-style-type: none;
         width: 20px;
         height: 40px;
-        display: flex;
         justify-content: center;
         align-items: center;
     }
@@ -133,6 +132,7 @@
         margin-bottom: 3px;
         border-radius: 50%;
         background-color: $text-color;
+
         &:last-child {
             margin-bottom: 0;
         }
