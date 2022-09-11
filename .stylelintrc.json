@@ -12,5 +12,5 @@
             }
         ]
     },
-    "ignoreFiles": ["build/*", "dist/*", "static/vendor/*"]
+    "ignoreFiles": ["build/*", "dist/*", "static/*"]
 }

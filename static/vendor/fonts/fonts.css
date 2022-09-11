@@ -1,11 +1,11 @@
 @font-face {
     src: url('./inter-v12-latin-500.woff2') format('woff2');
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 500;
 }
 
 @font-face {
     src: url('./inter-v12-latin-600.woff2') format('woff2');
-    font-family: "Inter";
+    font-family: 'Inter';
     font-weight: 600;
 }
