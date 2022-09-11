@@ -12,7 +12,5 @@
             }
         ]
     },
-    "ignoreFiles": [
-        "build/*"
-    ]
+    "ignoreFiles": ["build/*", "dist/*"]
 }

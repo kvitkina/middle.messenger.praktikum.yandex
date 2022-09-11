@@ -28,7 +28,6 @@ class ProfileInput extends Block<Input> {
         super('div', { ...props, events });
 
         this.element?.classList.add('profile-input');
-
     }
 
     onFocus = (e: Event): void => {

@@ -12,7 +12,7 @@ enum EVENTS {
     FLOW_RENDER = 'flow:render',
 }
 
-class Block<P extends Props = any>  {
+class Block<P extends Props = any> {
     static EVENTS = EVENTS;
 
     public id = nanoid(6);
