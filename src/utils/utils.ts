@@ -1,5 +1,16 @@
 import { REGEXP } from './constants';
 
+export const queryStringify = (data: any) => {
+    if (typeof data !== 'object') {
+        throw new Error('Data must be object');
+    }
+
+    const keys = Object.keys(data);
+    return keys.reduce((result, key, index) => {
+        return `${result}${key}=${data[key]}${index < keys.length - 1 ? '&' : ''}`;
+    }, '?');
+};
+
 export interface ValidationObject {
     errorClass: string;
     errorClassVisible: string;
@@ -17,11 +28,11 @@ export const inputValidator = (
     const errorElement: HTMLElement | null = element!.querySelector(errorClass);
     if (isValid) {
         if (event.type === 'focusout') {
-            errorElement!.classList.remove(errorClassVisible);
+            errorElement?.classList.remove(errorClassVisible);
             errorElement!.textContent = '';
         }
     } else {
-        errorElement!.classList.add(errorClassVisible);
+        errorElement?.classList.add(errorClassVisible);
         errorElement!.textContent = REGEXP[item.name].errorMessage;
     }
 };

@@ -16,12 +16,12 @@ export interface FormProps {
 
 export class Form extends Block<FormProps> {
     constructor(props: FormProps) {
-        super('form', props);
-
-        this.element?.classList.add('form');
-        this.props.events = {
+        const events = {
             submit: (e: Event) => onFormSubmit(e),
         };
+        super('form', { ...props, events });
+
+        this.element?.classList.add('form');
     }
 
     render(): DocumentFragment {

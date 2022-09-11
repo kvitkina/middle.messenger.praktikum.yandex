@@ -22,13 +22,13 @@ export interface InputProps {
 
 export class Input extends Block<InputProps> {
     constructor(props: InputProps) {
-        super('div', props);
-
-        this.element?.classList.add('input');
-        this.props.events = {
+        const events = {
             focusin: (e: Event): void => this.onFocus(e),
             focusout: (e: Event): void => this.onBlur(e),
         };
+        super('div', { ...props, events });
+
+        this.element?.classList.add('input');
     }
 
     onFocus = (e: Event): void => {

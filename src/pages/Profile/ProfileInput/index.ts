@@ -21,13 +21,14 @@ export interface Input {
 
 class ProfileInput extends Block<Input> {
     constructor(props: Input) {
-        super('div', props);
-
-        this.element?.classList.add('profile-input');
-        this.props.events = {
+        const events = {
             focusin: (e: Event): void => this.onFocus(e),
             focusout: (e: Event): void => this.onBlur(e),
         };
+        super('div', { ...props, events });
+
+        this.element?.classList.add('profile-input');
+
     }
 
     onFocus = (e: Event): void => {

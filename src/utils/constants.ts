@@ -3,9 +3,7 @@ interface RegExpContent {
     expression: RegExp;
 }
 
-interface TRegExp {
-    [key: string]: RegExpContent;
-}
+type TRegExp = Record<string, RegExpContent>;
 
 export const REGEXP: TRegExp = {
     login: {

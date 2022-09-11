@@ -5,13 +5,15 @@ import { TemplateDelegate } from 'handlebars';
 type Props = Record<string, any>;
 type Children = Record<string, Block>;
 
+enum EVENTS {
+    INIT = 'init',
+    FLOW_CDM = 'flow:component-did-mount',
+    FLOW_CDU = 'flow:component-did-update',
+    FLOW_RENDER = 'flow:render',
+}
+
 class Block<P extends Props = any>  {
-    static EVENTS = {
-        INIT: 'init',
-        FLOW_CDM: 'flow:component-did-mount',
-        FLOW_CDU: 'flow:component-did-update',
-        FLOW_RENDER: 'flow:render',
-    };
+    static EVENTS = EVENTS;
 
     public id = nanoid(6);
     protected props: P;
@@ -40,7 +42,7 @@ class Block<P extends Props = any>  {
         eventBus.emit(Block.EVENTS.INIT);
     }
 
-    _getChildrenAndProps(childrenAndProps: P) {
+    private _getChildrenAndProps(childrenAndProps: P) {
         const props: Props = {};
         const children: Children = {};
 
@@ -57,7 +59,7 @@ class Block<P extends Props = any>  {
         return { props, children };
     }
 
-    _addEvents(): void {
+    private _addEvents(): void {
         const { events = {} } = this.props as P & { events: Record<string, () => void> };
 
         Object.keys(events).forEach((eventName) => {
@@ -65,14 +67,14 @@ class Block<P extends Props = any>  {
         });
     }
 
-    _registerEvents(eventBus: EventBus): void {
+    private _registerEvents(eventBus: EventBus): void {
         eventBus.on(Block.EVENTS.INIT, this._init.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDM, this._componentDidMount.bind(this));
         eventBus.on(Block.EVENTS.FLOW_CDU, this._componentDidUpdate.bind(this));
         eventBus.on(Block.EVENTS.FLOW_RENDER, this._render.bind(this));
     }
 
-    _createResources(): void {
+    private _createResources(): void {
         const { tagName } = this._meta;
         this._element = this._createDocumentElement(tagName);
     }
@@ -87,7 +89,7 @@ class Block<P extends Props = any>  {
 
     protected init(): void {}
 
-    _componentDidMount(): void {
+    private _componentDidMount(): void {
         this.componentDidMount();
     }
 
@@ -182,7 +184,7 @@ class Block<P extends Props = any>  {
         return this.element;
     }
 
-    _makePropsProxy(props: any) {
+    private _makePropsProxy(props: any) {
         const self = this;
 
         return new Proxy(props, {
@@ -203,7 +205,7 @@ class Block<P extends Props = any>  {
         });
     }
 
-    _createDocumentElement(tagName: string): HTMLElement {
+    private _createDocumentElement(tagName: string): HTMLElement {
         return document.createElement(tagName);
     }
 
