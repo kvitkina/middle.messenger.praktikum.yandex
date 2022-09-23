@@ -8,29 +8,27 @@ interface Props {
     form: Block;
 }
 
-class Login extends Block<Props> {
+export class LoginPage extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
 
         this.element?.classList.add('.login-form');
     }
 
+    init(): void {
+        this.children.form = new Form({
+            title: 'Вход',
+            inputs: [
+                new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
+                new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
+            ],
+            linkTitle: 'Нет аккаунта?',
+            linkHref: '/signin',
+            button: new Button({ title: 'Вход' }),
+        });
+    }
+
     render(): DocumentFragment {
         return this.compile(tmpl, { form: this.props.form });
     }
 }
-
-export const LoginPage = new Login({
-    form: new Form({
-        title: 'Вход',
-        inputs: [
-            new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
-            new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
-        ],
-        linkTitle: 'Нет аккаунта?',
-        linkHref: '/signin',
-        button: new Button({ title: 'Вход' }),
-    }),
-});
-
-export default LoginPage;

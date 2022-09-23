@@ -8,7 +8,7 @@ import { onFormSubmit } from '../../utils/utils';
 
 interface Props {
     user: User;
-    inputs: Block[];
+    inputs: Input[];
     actions: Block[];
     saveButton: Block;
     events: {
@@ -94,30 +94,27 @@ const passwordInputs: Input[] = [
     },
 ];
 
-class Profile extends Block<Props> {
+export class ProfilePage extends Block<Props> {
     constructor(props: Props) {
         super('section', props);
         this.element?.classList.add('profile');
+    }
+
+    init(): void {
+        this.props.user = user;
+        this.children.inputs = profileInputs.map((item) => new ProfileInput(item));
+        this.children.actions =
+            new ProfileButton({ title: 'Изменить данные' }), new ProfileButton({ title: 'Изменить пароль' }),
+
+        this.children.saveButton = new Button({ title: 'Сохранить' });
+        this.props.events = {
+            submit: (e) => {
+                onFormSubmit(e);
+            },
+        };
     }
 
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     }
 }
-
-const ProfilePage = new Profile({
-    user,
-    inputs: profileInputs.map((item) => new ProfileInput(item)),
-    actions: [
-        new ProfileButton({ title: 'Изменить данные' }),
-        new ProfileButton({ title: 'Изменить пароль' }),
-    ],
-    saveButton: new Button({ title: 'Сохранить' }),
-    events: {
-        submit: (e) => {
-            onFormSubmit(e);
-        },
-    },
-});
-
-export default ProfilePage;

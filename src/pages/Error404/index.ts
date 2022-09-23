@@ -1,5 +1,21 @@
-import ServiseError from '../../components/ServiceError';
+import ServiseError, { ServiceErrorProps } from '../../components/ServiceError';
+import Block from '../../utils/Block';
+import tmpl from './Error404.hbs';
 
-const Error404Page = new ServiseError({ title: '404', subtitle: 'Не туда попали' });
+interface Props {
+    serviceError: ServiceErrorProps;
+}
 
-export default Error404Page;
+export class Error404Page extends Block<Props> {
+    constructor(props: Props) {
+        super('div', props);
+    }
+
+    init(): void {
+        this.children.serviceError = new ServiseError({ title: '404', subtitle: 'Не туда попали' });
+    }
+
+    render(): DocumentFragment {
+        return this.compile(tmpl, this.props);
+    }
+}

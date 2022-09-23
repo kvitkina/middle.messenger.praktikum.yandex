@@ -7,19 +7,14 @@ interface ChatsProps {
     chatsList: Block[];
     currentChatName: string;
 }
-class Chats extends Block<ChatsProps> {
+export class ChatsPage extends Block<ChatsProps> {
     constructor(props: ChatsProps) {
         super('div', props);
         this.element?.classList.add('chats');
     }
 
-    render(): DocumentFragment {
-        return this.compile(tmpl, this.props);
-    }
-}
-
-const ChatsPage = new Chats({
-    chatsList: [
+    init(): void {
+        this.children.chatsList =
         new Chat({
             avatar: '',
             name: 'Иван',
@@ -40,9 +35,11 @@ const ChatsPage = new Chats({
             lastMessage: 'Так увлёкся работой по курсу, что совсем забыл его анонсир...',
             lastMessageTime: '12:00',
             newMessagesCounter: 20,
-        }),
-    ],
-    currentChatName: 'Иван',
-});
+        });
+        this.props.currentChatName = 'Иван';
+    }
 
-export default ChatsPage;
+    render(): DocumentFragment {
+        return this.compile(tmpl, this.props);
+    }
+}
