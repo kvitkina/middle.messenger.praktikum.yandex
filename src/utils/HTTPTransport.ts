@@ -59,6 +59,9 @@ class HTTPTransport {
             xhr.timeout = timeout;
             xhr.ontimeout = reject;
 
+            xhr.withCredentials = true;
+            xhr.responseType = 'json';
+
             if (isGet || !data) {
                 xhr.send();
             } else {

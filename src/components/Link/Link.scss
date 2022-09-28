@@ -1,0 +1,15 @@
+@import '../../../static/variables.scss';
+
+.link {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 11px;
+    line-height: 11px;
+    color: $primary-color;
+    text-align: center;
+    transition: all 0.3s;
+
+    &:hover {
+        text-decoration: underline;
+    }
+}

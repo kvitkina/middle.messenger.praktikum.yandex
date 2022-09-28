@@ -4,5 +4,5 @@ export enum Routes {
     Profile = '/profile',
     Error500 = '/500',
     Error404 = '/404',
-    Chats = '/chats'
+    Chats = '/chats',
 }

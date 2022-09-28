@@ -103,10 +103,9 @@ export class ProfilePage extends Block<Props> {
     init(): void {
         this.props.user = user;
         this.children.inputs = profileInputs.map((item) => new ProfileInput(item));
-        this.children.actions =
-            new ProfileButton({ title: 'Изменить данные' }), new ProfileButton({ title: 'Изменить пароль' }),
-
-        this.children.saveButton = new Button({ title: 'Сохранить' });
+        (this.children.actions = new ProfileButton({ title: 'Изменить данные' })),
+            new ProfileButton({ title: 'Изменить пароль' }),
+            (this.children.saveButton = new Button({ title: 'Сохранить' }));
         this.props.events = {
             submit: (e) => {
                 onFormSubmit(e);

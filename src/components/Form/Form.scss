@@ -24,16 +24,7 @@
     }
 
     &__link {
-        text-decoration: none;
-        font-weight: 500;
-        font-size: 11px;
-        line-height: 11px;
-        color: $primary-color;
-        text-align: center;
-        transition: all 0.3s;
-
-        &:hover {
-            text-decoration: underline;
-        }
+        display: flex;
+        justify-content: center;
     }
 }

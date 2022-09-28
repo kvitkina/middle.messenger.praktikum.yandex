@@ -3,6 +3,7 @@ import Form from '../../components/Form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Block from '../../utils/Block';
+import { Link } from '../../components/Link';
 
 interface Props {
     form: Block;
@@ -22,8 +23,9 @@ export class LoginPage extends Block<Props> {
                 new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
                 new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
             ],
-            linkTitle: 'Нет аккаунта?',
-            linkHref: '/signin',
+            // linkTitle: 'Нет аккаунта?',
+            // linkHref: '/signin',
+            link: new Link({ label: 'Нет аккаунта?', to: '/signin'}),
             button: new Button({ title: 'Вход' }),
         });
     }

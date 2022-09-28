@@ -3,6 +3,7 @@ import Form from '../../components/Form';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Block from '../../utils/Block';
+import { Link } from '../../components/Link';
 
 interface Props {
     form: Block;
@@ -30,8 +31,7 @@ export class RegistrationPage extends Block<Props> {
                     name: 'confirm_password',
                 }),
             ],
-            linkTitle: 'Войти',
-            linkHref: '/',
+            link: new Link({ label: 'Войти', to: '/'}),
             button: new Button({ title: 'Зарегистрироваться' }),
         });
     }

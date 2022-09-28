@@ -8,8 +8,7 @@ import Router from './utils/Router';
 import { Routes } from './utils/types';
 
 window.addEventListener('DOMContentLoaded', () => {
-    Router
-        .use(Routes.Login, LoginPage)
+    Router.use(Routes.Login, LoginPage)
         .use(Routes.Error500, Error500Page)
         .use(Routes.Error404, Error404Page)
         .use(Routes.Register, RegistrationPage)

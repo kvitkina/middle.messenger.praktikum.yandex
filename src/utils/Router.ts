@@ -1,7 +1,7 @@
 import Block from './Block';
 
-interface ComponentConstructable<P extends Record<string ,any>> {
-    new(props: P): Block<P>
+interface ComponentConstructable<P extends Record<string, any>> {
+    new (props: P): Block<P>;
 }
 
 function isEqual(lhs: string, rhs: string): boolean {
