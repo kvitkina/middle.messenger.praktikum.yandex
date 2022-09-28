@@ -5,12 +5,15 @@ import Button from '../../components/Button';
 import './Profile.scss';
 import Block from '../../utils/Block';
 import { onFormSubmit } from '../../utils/utils';
+import { Link } from '../../components/Link';
+import { ArrowButton } from '../../components/ArrowButton';
 
 interface Props {
     user: User;
     inputs: Input[];
     actions: Block[];
     saveButton: Block;
+    link: Block;
     events: {
         submit: (e: SubmitEvent) => void;
     };
@@ -104,8 +107,10 @@ export class ProfilePage extends Block<Props> {
         this.props.user = user;
         this.children.inputs = profileInputs.map((item) => new ProfileInput(item));
         (this.children.actions = new ProfileButton({ title: 'Изменить данные' })),
-            new ProfileButton({ title: 'Изменить пароль' }),
-            (this.children.saveButton = new Button({ title: 'Сохранить' }));
+        new ProfileButton({ title: 'Изменить пароль' });
+        this.children.saveButton = new Button({ title: 'Сохранить' });
+        this.children.link = new Link({ label: 'Выйти', to: '/', className: 'profile__link'});
+        this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
         this.props.events = {
             submit: (e) => {
                 onFormSubmit(e);

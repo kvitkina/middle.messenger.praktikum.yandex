@@ -23,8 +23,6 @@ export class LoginPage extends Block<Props> {
                 new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
                 new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
             ],
-            // linkTitle: 'Нет аккаунта?',
-            // linkHref: '/signin',
             link: new Link({ label: 'Нет аккаунта?', to: '/signin'}),
             button: new Button({ title: 'Вход' }),
         });

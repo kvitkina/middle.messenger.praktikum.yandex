@@ -1,4 +1,3 @@
-import { PropsWithRouter } from '../../hocs/withRouter';
 import Block from '../../utils/Block';
 import { onFormSubmit } from '../../utils/utils';
 import tmpl from './Form.hbs';
@@ -7,7 +6,7 @@ import './Form.scss';
 export interface FormProps {
     title: string;
     inputs: Block[];
-    link?: Block;
+    link: Block;
     button: Block;
     events?: {
         submit: (e: SubmitEvent) => void;
