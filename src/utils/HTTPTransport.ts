@@ -8,30 +8,36 @@ enum Methods {
 }
 
 interface Options {
-    method: Methods;
-    timeout: number;
-    data: any;
+    method?: Methods;
+    data?: any;
     headers: Record<string, string>;
 }
 
 class HTTPTransport {
-    get = (url: string, options: Options) => {
-        return this.request(url, { ...options, method: Methods.GET }, options.timeout);
+    static API_URL = 'https://ya-praktikum.tech/api/v2';
+    protected endpoint: string;
+
+    constructor(endpoint: string) {
+        this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
+    }
+
+    public get<Response>(path = '/',  options: Options): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.GET});
+    }
+
+    public post = (path: string, options: Options) => {
+        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.POST });
     };
 
-    post = (url: string, options: Options) => {
-        return this.request(url, { ...options, method: Methods.POST }, options.timeout);
+    public put = (path: string, options: Options) => {
+        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.PUT });
     };
 
-    put = (url: string, options: Options) => {
-        return this.request(url, { ...options, method: Methods.PUT }, options.timeout);
+    public delete = (url: string, options: Options) => {
+        return this.request<Response>(url, { ...options, method: Methods.DELETE });
     };
 
-    delete = (url: string, options: Options) => {
-        return this.request(url, { ...options, method: Methods.DELETE }, options.timeout);
-    };
-
-    request = (url: string, options: Options, timeout = 5000) => {
+    private request<Response>(url: string, options: Options): Promise<Response> {
         const { headers = {}, method, data } = options;
 
         return new Promise(function (resolve, reject) {
@@ -56,7 +62,6 @@ class HTTPTransport {
             xhr.onabort = reject;
             xhr.onerror = reject;
 
-            xhr.timeout = timeout;
             xhr.ontimeout = reject;
 
             xhr.withCredentials = true;
@@ -70,3 +75,5 @@ class HTTPTransport {
         });
     };
 }
+
+export default HTTPTransport;

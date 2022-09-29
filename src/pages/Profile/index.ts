@@ -7,6 +7,7 @@ import Block from '../../utils/Block';
 import { onFormSubmit } from '../../utils/utils';
 import { Link } from '../../components/Link';
 import { ArrowButton } from '../../components/ArrowButton';
+import { User } from '../../api/AuthAPI';
 
 interface Props {
     user: User;
@@ -19,15 +20,6 @@ interface Props {
     };
 }
 
-export interface User {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    phone: string;
-    display_name: string;
-}
-
 const user: User = {
     email: 'pochta@yandex.ru',
     login: 'kvitkina',
@@ -35,6 +27,8 @@ const user: User = {
     second_name: 'Квиткина',
     phone: '+79099673030',
     display_name: 'kvitkina',
+    avatar: '',
+    id: '',
 };
 
 const profileInputs: Input[] = [

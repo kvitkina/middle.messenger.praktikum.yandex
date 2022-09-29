@@ -11,12 +11,16 @@ export interface FormProps {
     events?: {
         submit: (e: SubmitEvent) => void;
     };
+    controller: (data: any) => void;
 }
 
 export class Form extends Block<FormProps> {
     constructor(props: FormProps) {
         const events = {
-            submit: (e: Event) => onFormSubmit(e),
+            submit: (e: Event) => {
+                const data = onFormSubmit(e);
+                this.props.controller(data);
+            },
         };
         super('form', { ...props, events });
 

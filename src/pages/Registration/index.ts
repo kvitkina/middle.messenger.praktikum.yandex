@@ -4,6 +4,8 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Block from '../../utils/Block';
 import { Link } from '../../components/Link';
+import AuthController from '../../controllers/AuthController';
+import { SignupData } from '../../api/AuthAPI';
 
 interface Props {
     form: Block;
@@ -12,6 +14,12 @@ interface Props {
 export class RegistrationPage extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
+    }
+
+    handleSignup(data: SignupData): void {
+        if(data) {
+            AuthController.signup(data);
+        }
     }
 
     init(): void {
@@ -33,6 +41,7 @@ export class RegistrationPage extends Block<Props> {
             ],
             link: new Link({ label: 'Войти', to: '/'}),
             button: new Button({ title: 'Зарегистрироваться' }),
+            controller: this.handleSignup,
         });
     }
     render(): DocumentFragment {

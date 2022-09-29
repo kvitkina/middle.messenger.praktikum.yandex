@@ -37,7 +37,7 @@ export const inputValidator = (
     }
 };
 
-export const onFormSubmit = (e: Event): void => {
+export const onFormSubmit = (e: Event): Record<string, string> | undefined => {
     e.preventDefault();
     const inputs = document.querySelectorAll('input');
     const formValues: Record<string, string> = {};
@@ -50,5 +50,5 @@ export const onFormSubmit = (e: Event): void => {
         return;
     }
     inputs.forEach((input) => (formValues[input.name] = input.value));
-    console.log(formValues);
+    return formValues;
 };
