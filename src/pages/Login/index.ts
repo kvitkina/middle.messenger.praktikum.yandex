@@ -13,7 +13,7 @@ export class LoginPage extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
 
-        this.element?.classList.add('.login-form');
+        this.element?.classList.add('login-form');
     }
 
     init(): void {
@@ -23,7 +23,7 @@ export class LoginPage extends Block<Props> {
                 new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
                 new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
             ],
-            link: new Link({ label: 'Нет аккаунта?', to: '/signin'}),
+            link: new Link({ label: 'Нет аккаунта?', to: '/signup' }),
             button: new Button({ title: 'Вход' }),
         });
     }

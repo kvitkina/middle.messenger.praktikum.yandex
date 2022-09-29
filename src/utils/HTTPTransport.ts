@@ -21,8 +21,8 @@ class HTTPTransport {
         this.endpoint = `${HTTPTransport.API_URL}${endpoint}`;
     }
 
-    public get<Response>(path = '/',  options: Options): Promise<Response> {
-        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.GET});
+    public get<Response>(path = '/', options: Options): Promise<Response> {
+        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.GET });
     }
 
     public post = (path: string, options: Options) => {
@@ -73,7 +73,7 @@ class HTTPTransport {
                 xhr.send(data);
             }
         });
-    };
+    }
 }
 
 export default HTTPTransport;

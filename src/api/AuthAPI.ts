@@ -29,7 +29,7 @@ export class AuthAPI extends BaseAPI {
         super('/auth');
     }
 
-    headers: Record<string, string> = {'Content-Type': 'application/json'};
+    headers: Record<string, string> = { 'Content-Type': 'application/json' };
 
     signin(data: SigninData) {
         return this.http.post('/sighin', { data, headers: this.headers });
@@ -52,4 +52,4 @@ export class AuthAPI extends BaseAPI {
     delete = undefined;
 }
 
-export default new AuthAPI;
+export default new AuthAPI();

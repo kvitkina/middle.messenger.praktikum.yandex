@@ -7,22 +7,25 @@ interface Props extends PropsWithRouter {
     modifier?: string;
     events?: {
         click: () => void;
-    }
+    };
     callback?: () => any;
 }
 
 export class BaseArrowButton extends Block<Props> {
     constructor(props: Props) {
-        super('div', { ...props, events: {
-            click: () => this.back()
-        },
+        super('div', {
+            ...props,
+            events: {
+                click: () => this.back(),
+            },
         });
     }
 
     back() {
         if (this.props.modifier) {
             this.props.router.back();
-        } this.props.callback!();
+        }
+        this.props.callback!();
     }
 
     render(): DocumentFragment {

@@ -1,4 +1,5 @@
 import API, { AuthAPI, SigninData, SignupData } from '../api/AuthAPI';
+import store from '../utils/Store';
 
 class AuthController {
     private readonly api: AuthAPI;
@@ -12,16 +13,19 @@ class AuthController {
 
     async signup(data: SignupData) {
         await this.api.signup(data);
+
+        await this.fetchUser();
+
     }
 
     async fetchUser() {
-        await this.api.read();
+        const user = await this.api.read();
+        store.set('user', user);
     }
 
     async logout() {
         await this.api.logout();
     }
 }
-
 
 export default new AuthController();

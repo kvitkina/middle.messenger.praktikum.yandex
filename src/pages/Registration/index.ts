@@ -17,7 +17,7 @@ export class RegistrationPage extends Block<Props> {
     }
 
     handleSignup(data: SignupData): void {
-        if(data) {
+        if (data) {
             AuthController.signup(data);
         }
     }
@@ -39,7 +39,7 @@ export class RegistrationPage extends Block<Props> {
                     name: 'confirm_password',
                 }),
             ],
-            link: new Link({ label: 'Войти', to: '/'}),
+            link: new Link({ label: 'Войти', to: '/' }),
             button: new Button({ title: 'Зарегистрироваться' }),
             controller: this.handleSignup,
         });

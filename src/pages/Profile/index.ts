@@ -101,9 +101,9 @@ export class ProfilePage extends Block<Props> {
         this.props.user = user;
         this.children.inputs = profileInputs.map((item) => new ProfileInput(item));
         (this.children.actions = new ProfileButton({ title: 'Изменить данные' })),
-        new ProfileButton({ title: 'Изменить пароль' });
+            new ProfileButton({ title: 'Изменить пароль' });
         this.children.saveButton = new Button({ title: 'Сохранить' });
-        this.children.link = new Link({ label: 'Выйти', to: '/', className: 'profile__link'});
+        this.children.link = new Link({ label: 'Выйти', to: '/', className: 'profile__link' });
         this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
         this.props.events = {
             submit: (e) => {
