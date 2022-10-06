@@ -4,6 +4,8 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 import Block from '../../utils/Block';
 import { Link } from '../../components/Link';
+import AuthController from '../../controllers/AuthController';
+import { SigninData } from '../../api/AuthAPI';
 
 interface Props {
     form: Block;
@@ -16,6 +18,12 @@ export class LoginPage extends Block<Props> {
         this.element?.classList.add('login-form');
     }
 
+    handleSignup(data: SigninData): void {
+        if (data) {
+            AuthController.signin(data);
+        }
+    }
+
     init(): void {
         this.children.form = new Form({
             title: 'Вход',
@@ -25,6 +33,7 @@ export class LoginPage extends Block<Props> {
             ],
             link: new Link({ label: 'Нет аккаунта?', to: '/signup' }),
             button: new Button({ title: 'Вход' }),
+            controller: this.handleSignup,
         });
     }
 

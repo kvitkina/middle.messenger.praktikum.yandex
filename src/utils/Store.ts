@@ -1,6 +1,6 @@
 import Block from './Block';
 import { EventBus } from './EventBus';
-import { set } from './helpers';
+import { isEqual, set } from './helpers';
 import { StoreEvents } from './types';
 
 export class Store extends EventBus {
@@ -35,9 +35,11 @@ export function withStore(mapStateToProps: (state: any) => any) {
                 store.on(StoreEvents.Updated, () => {
                     const stateProps = mapStateToProps(store.getState());
 
-                    previousState = stateProps;
+                    if (!isEqual(previousState, stateProps)) {
+                        this.setProps({...stateProps});
+                    }
 
-                    this.setProps({ ...stateProps });
+                    previousState = stateProps;
                 });
             }
         };

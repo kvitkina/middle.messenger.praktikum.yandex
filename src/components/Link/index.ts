@@ -10,6 +10,7 @@ export interface LinkProps extends PropsWithRouter {
     events?: {
         click: () => void;
     };
+    handler?: () => void;
 }
 
 class BaseLink extends Block<LinkProps> {
@@ -17,7 +18,10 @@ class BaseLink extends Block<LinkProps> {
         super('div', {
             ...props,
             events: {
-                click: () => this.navigate(),
+                click: () => {
+                    this.props.handler && this.props.handler();
+                    this.navigate();
+                },
             },
         });
     }

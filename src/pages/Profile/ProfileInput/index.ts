@@ -12,7 +12,7 @@ export interface Input {
     label: string;
     type: string;
     name: string;
-    value: string;
+    value?: string;
     events?: {
         focusin: (e: Event) => void;
         focusout: (e: Event) => void;

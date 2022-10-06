@@ -32,11 +32,11 @@ export class AuthAPI extends BaseAPI {
     headers: Record<string, string> = { 'Content-Type': 'application/json' };
 
     signin(data: SigninData) {
-        return this.http.post('/sighin', { data, headers: this.headers });
+        return this.http.post('/signin', { data, headers: this.headers });
     }
 
     signup(data: SignupData) {
-        return this.http.post('/sighiup', { data, headers: this.headers });
+        return this.http.post('/signup', { data, headers: this.headers });
     }
 
     read(): Promise<User> {
