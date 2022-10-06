@@ -42,23 +42,6 @@ class AuthController {
         }
     }
 
-    // async fetchUser() {
-    //     await this.api.read()
-    //         .then((res: any): void => {
-    //             if (res.status === 200) {
-    //                 console.log(res);
-    //                 const user = res.response;
-    //                 store.set('user', user);
-    //                 if (window.location.pathname === Routes.Login) {
-    //                     Router.go(Routes.Chats);
-    //                 }
-    //             }
-    //         })
-    //         .catch((e: any) => {
-    //             console.error(e);
-    //         });
-    // }
-
     async logout() {
         try {
             await this.api.logout();

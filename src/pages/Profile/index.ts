@@ -10,6 +10,7 @@ import { ArrowButton } from '../../components/ArrowButton';
 import { User } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
 import store, { withStore } from '../../utils/Store';
+import UserController from '../../controllers/UserController';
 
 interface Props {
     user: User;
@@ -86,6 +87,13 @@ export class ProfilePageBase extends Block<Props> {
         AuthController.logout();
     }
 
+    handleUpdateUser(e: Event): void {
+        const data = onFormSubmit(e);
+        if (data) {
+            UserController.updateUser(data as any);
+        }
+    }
+
     init(): void {
         AuthController.fetchUser();
 
@@ -103,8 +111,8 @@ export class ProfilePageBase extends Block<Props> {
         });
         this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
         this.props.events = {
-            submit: (e) => {
-                onFormSubmit(e);
+            submit: (e: Event) => {
+                this.handleUpdateUser(e);
             },
         };
     }
