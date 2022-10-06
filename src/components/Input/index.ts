@@ -12,7 +12,7 @@ const validationObject: ValidationObject = {
 export interface InputProps {
     label: string;
     type: string;
-    value: string;
+    value?: string;
     name: string;
     events?: {
         focusin: (e: Event) => void;

@@ -9,8 +9,9 @@ import { Link } from '../../components/Link';
 import { ArrowButton } from '../../components/ArrowButton';
 import { User } from '../../api/AuthAPI';
 import AuthController from '../../controllers/AuthController';
-import store, { withStore } from '../../utils/Store';
+import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
+import Popup from '../../components/Popup';
 
 interface Props {
     user: User;
@@ -18,8 +19,10 @@ interface Props {
     actions: Block[];
     saveButton: Block;
     link: Block;
+    popup: Block;
     events: {
         submit: (e: SubmitEvent) => void;
+        click: () => void;
     };
 }
 
@@ -60,19 +63,16 @@ const profileInputs: Input[] = [
 //     {
 //         label: 'Старый пароль',
 //         type: 'password',
-//         value: '',
 //         name: 'oldPassword',
 //     },
 //     {
 //         label: 'Новый пароль',
 //         type: 'password',
-//         value: '',
 //         name: 'newPassword',
 //     },
 //     {
 //         label: 'Повторите новый пароль',
 //         type: 'password',
-//         value: '',
 //         name: 'newPassword',
 //     },
 // ];
@@ -94,6 +94,12 @@ export class ProfilePageBase extends Block<Props> {
         }
     }
 
+    handleChangeAvatar(e: any) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        UserController.updateAvatar(data);
+    }
+
     init(): void {
         AuthController.fetchUser();
 
@@ -110,6 +116,16 @@ export class ProfilePageBase extends Block<Props> {
             handler: this.handleLogout,
         });
         this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
+        this.children.popup = new Popup({
+            title: 'Загрузите файл',
+            button: new Button({ title: 'Поменять'}),
+            content: new ProfileInput({ type: 'file', label: '', name: 'avatar'}),
+            events: {
+                submit: (e: any) => {
+                    this.handleChangeAvatar(e);
+                },
+            }
+        });
         this.props.events = {
             submit: (e: Event) => {
                 this.handleUpdateUser(e);
