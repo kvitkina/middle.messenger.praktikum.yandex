@@ -32,7 +32,7 @@ export class UserAPI extends BaseAPI {
     }
 
     updateAvatar(data: FormData) {
-        return this.http.post('/profile/avatar', { data });
+        return this.http.put('/profile/avatar', { data });
     }
 
     create = undefined;

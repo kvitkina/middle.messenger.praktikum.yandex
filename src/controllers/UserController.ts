@@ -1,4 +1,5 @@
 import API, { PasswordData, User, UserAPI } from '../api/UserAPI';
+import store from '../utils/Store';
 import AuthController from './AuthController';
 
 class UserController {
@@ -28,7 +29,11 @@ class UserController {
 
     async updateAvatar(data: FormData) {
         try {
-            await this.api.updateAvatar(data);
+            await this.api.updateAvatar(data)
+                .then((res) => {
+                    store.set('user', res);
+                });
+
         } catch (e: any) {
             console.log(e.reason);
         }

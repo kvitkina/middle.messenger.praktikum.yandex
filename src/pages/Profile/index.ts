@@ -12,8 +12,10 @@ import AuthController from '../../controllers/AuthController';
 import { withStore } from '../../utils/Store';
 import UserController from '../../controllers/UserController';
 import Popup from '../../components/Popup';
+import Avatar from '../../components/Avatar';
 
 interface Props {
+    avatar: Block;
     user: User;
     inputs: Input[];
     actions: Block[];
@@ -78,6 +80,7 @@ const profileInputs: Input[] = [
 // ];
 
 export class ProfilePageBase extends Block<Props> {
+
     constructor(props: Props) {
         super('section', props);
         this.element?.classList.add('profile');
@@ -100,9 +103,24 @@ export class ProfilePageBase extends Block<Props> {
         UserController.updateAvatar(data);
     }
 
+    handleOpenPopup() {
+        this.element?.querySelector('.popup')?.classList.add('popup_visible');
+    }
+
+    handleClosePopup() {
+        this.element?.querySelector('.popup')?.classList.remove('popup_visible');
+    }
+
     init(): void {
         AuthController.fetchUser();
 
+        this.children.avatar = new Avatar({
+            events: {
+                click: () => {
+                    this.handleOpenPopup();
+                },
+            }
+        });
         this.children.inputs = profileInputs.map((item) => {
             return new ProfileInput(item);
         });
@@ -123,6 +141,7 @@ export class ProfilePageBase extends Block<Props> {
             events: {
                 submit: (e: any) => {
                     this.handleChangeAvatar(e);
+                    this.handleClosePopup();
                 },
             }
         });
@@ -137,6 +156,9 @@ export class ProfilePageBase extends Block<Props> {
         if(newProps.user) {
             this.children.inputs = profileInputs.map((item) => {
                 return new ProfileInput({ ...item, value: newProps.user[item.name]});
+            });
+            this.children.avatar.setProps({
+                avatar: `'https://ya-praktikum.tech/api/v2/resources${newProps.user.avatar}'`
             });
             return true;
         }
