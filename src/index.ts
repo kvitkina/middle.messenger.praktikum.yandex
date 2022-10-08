@@ -6,11 +6,6 @@ import { ChatsPage } from './pages/Chats';
 import { ProfilePage } from './pages/Profile';
 import Router from './utils/Router';
 import { Routes } from './utils/types';
-import AuthController from './controllers/AuthController';
-
-import { Store } from './utils/Store';
-
-window.store = new Store();
 
 window.addEventListener('DOMContentLoaded', async() => {
     Router.use(Routes.Login, LoginPage)
