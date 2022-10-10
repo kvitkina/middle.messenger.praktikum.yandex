@@ -1,18 +1,22 @@
 <div class='chats__list-container'>
-    <a href='/profile' class='chats__button'>
-        Профиль
-        <div class='chats__button-arrow'></div>
-    </a>
+    <div class='chats__actions'>
+        {{{addChatButton}}}
+        <a href='/profile' class='chats__button'>
+            Профиль
+            <div class='chats__button-arrow'></div>
+        </a>
+    </div>
+
     <input type='text' class='chats__input' placeholder='Поиск' name='search' />
-    {{#each chatsList}}
+    {{#each chats}}
         {{{this}}}
     {{/each}}
 </div>
 
 <div class='chats__detail'>
     <div class='chats__detail-header'>
-        <img src='{{avatar}}' class='chats__avatar' />
-        <h3 class='chats__name'>{{currentChatName}}</h3>
+        <img src='{{chat.avatar}}' class='chats__avatar' />
+        <h3 class='chats__name'>{{chat.title}}</h3>
         <ul class='chats__actions-icon'>
             <li class='chats__dot'></li>
             <li class='chats__dot'></li>
@@ -36,3 +40,4 @@
     </div>
     {{! <p class='chats__placeholder'>Выберите чат чтобы отправить сообщение</p> }}
 </div>
+{{{addChatPopup}}}

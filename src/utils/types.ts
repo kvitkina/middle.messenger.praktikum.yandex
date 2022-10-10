@@ -1,3 +1,6 @@
+import { User } from '../api/AuthAPI';
+import Chat from '../pages/Chats/Chat';
+
 export enum Routes {
     Login = '/',
     Register = '/signup',
@@ -9,4 +12,9 @@ export enum Routes {
 
 export enum StoreEvents {
     Updated = 'updated',
+}
+
+export interface State {
+    user: User;
+    chats: Chat[];
 }

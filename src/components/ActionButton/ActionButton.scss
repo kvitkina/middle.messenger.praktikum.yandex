@@ -1,0 +1,39 @@
+@import '../../../static/variables.scss';
+
+.action-button {
+    background-color: inherit;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: all 0.3s;
+    border: none;
+    flex-direction: row;
+
+    &:hover {
+        opacity: 0.9;
+    }
+
+    &__icon {
+        margin-right: 10px;
+        width: 20px;
+        height: 20px;
+        border: 1px solid $primary-color;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        background-image: url('../../../static/images/plus-icon.svg');
+        background-repeat: no-repeat;
+        background-position: center;
+
+        &_delete {
+            transform: rotate(45%);
+        }
+    }
+
+    &__title {
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 14px;
+    }
+}

@@ -29,10 +29,9 @@ class UserController {
 
     async updateAvatar(data: FormData) {
         try {
-            await this.api.updateAvatar(data)
-                .then((res) => {
-                    store.set('user', res);
-                });
+            await this.api.updateAvatar(data);
+
+            await AuthController.fetchUser();
 
         } catch (e: any) {
             console.log(e.reason);

@@ -42,4 +42,8 @@ export const REGEXP: TRegExp = {
         errorMessage: 'Не должно быть пустым',
         expression: /^[^]+$/,
     },
+    chat_title: {
+        errorMessage: 'Не должно быть пустым',
+        expression: /^[^]+$/,
+    },
 };

@@ -160,8 +160,9 @@ export class ProfilePageBase extends Block<Props> {
             this.children.avatar.setProps({
                 avatar: `'https://ya-praktikum.tech/api/v2/resources${newProps.user.avatar}'`
             });
-            return true;
         }
+        return true;
+
     }
 
     render(): DocumentFragment {
