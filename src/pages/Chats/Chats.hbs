@@ -8,15 +8,15 @@
     </div>
 
     <input type='text' class='chats__input' placeholder='Поиск' name='search' />
-    {{#each chats}}
+    {{#each chatsList}}
         {{{this}}}
     {{/each}}
 </div>
 
 <div class='chats__detail'>
     <div class='chats__detail-header'>
-        <img src='{{chat.avatar}}' class='chats__avatar' />
-        <h3 class='chats__name'>{{chat.title}}</h3>
+        <img src='{{selectedChat.avatar}}' class='chats__avatar' />
+        <h3 class='chats__name'>{{selectedChat.title}}</h3>
         <ul class='chats__actions-icon'>
             <li class='chats__dot'></li>
             <li class='chats__dot'></li>

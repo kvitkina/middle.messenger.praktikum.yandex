@@ -1,23 +1,24 @@
 import { ChatData } from '../../../api/ChatsAPI';
 import Block from '../../../utils/Block';
-import { withStore } from '../../../utils/Store';
 import tmpl from './Chat.hbs';
 import './Chat.scss';
 
 interface Props {
     id: number;
-    selectedChat: ChatData;
+    chat: ChatData;
+    selectedChat?: ChatData;
     events: {
         click: () => void;
     }
-    isSelected: boolean;
+    isSelected?: boolean;
 }
 
-class ChatBase extends Block<Props> {
+class Chat extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
 
         this.element?.classList.add('chat');
+        {this.props.isSelected && this.element?.classList.add('chat_selected');}
     }
 
     render(): DocumentFragment {
@@ -25,7 +26,4 @@ class ChatBase extends Block<Props> {
     }
 }
 
-export const withSelectedChat = withStore(state => ({selectedChat: (state.chats || [])
-    .find(({id}) => id === state.selectedChat)}));
-
-export const Chat = withSelectedChat(ChatBase);
+export default Chat;

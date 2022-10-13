@@ -13,6 +13,10 @@
         background-color: $accent-bg-color;
     }
 
+    &_selected {
+        background-color: $accent-bg-color;
+    }
+
     &__avatar {
         border-radius: 50%;
         background: $secondary-bg-color;

@@ -1,7 +1,7 @@
 import Block from '../../utils/Block';
 import tmpl from './Chats.hbs';
 import './Chats.scss';
-import { Chat } from './Chat';
+import Chat from './Chat';
 import { ArrowButton } from '../../components/ArrowButton';
 import { withStore } from '../../utils/Store';
 import { ChatData } from '../../api/ChatsAPI';
@@ -10,7 +10,6 @@ import ActionButton from '../../components/ActionButton';
 import Popup from '../../components/Popup';
 import Button from '../../components/Button';
 import Input from '../../components/Input';
-import { onFormSubmit } from '../../utils/utils';
 
 interface ChatsProps {
     chatsList: Block[];
@@ -18,12 +17,15 @@ interface ChatsProps {
     arrowButton: Block;
     addChatButton: Block;
     addChatPopup: Block;
+    selectedChat: ChatData;
 }
 
 export class ChatsPageBase extends Block<ChatsProps> {
     constructor(props: ChatsProps) {
         super('div', props);
         this.element?.classList.add('chats');
+        console.log(this.props.selectedChat);
+
     }
 
     handleOpenPopup() {
@@ -38,13 +40,12 @@ export class ChatsPageBase extends Block<ChatsProps> {
         e.preventDefault();
         const input = this.element?.querySelector('.input__item');
 
-        ChatsController.addChat({title: input?.value});
+        ChatsController.createChat({title: input?.value});
     }
 
     init(): void {
         ChatsController.fetchChats();
-
-        // this.children.chatsList = this.createChats(this.props);
+        this.children.chatsList = [];
         this.children.arrowButton = new ArrowButton({ callback: () => console.log('сообщение') });
         this.children.addChatButton = new ActionButton({
             title: 'Добавить чат',
@@ -56,8 +57,8 @@ export class ChatsPageBase extends Block<ChatsProps> {
             }
         });
         this.children.addChatPopup = new Popup({
-            title: 'Загрузите файл',
-            button: new Button({ title: 'Поменять'}),
+            title: 'Добавить чат',
+            button: new Button({ title: 'Готово'}),
             content: new Input({ type: 'text', label: 'Название чата', name: 'chat_title'}),
             events: {
                 submit: (e: any) => {
@@ -70,28 +71,28 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     protected componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps): boolean {
         if(newProps.chats) {
-            this.children.chatsList = this.createChats(newProps);
+            this.children.chatsList = newProps.chats.map(data => {
+                console.log(data);
+                return new Chat({
+                    id: data.id,
+                    chat: data,
+                    selectedChat: newProps.selectedChat,
+                    events: {
+                        click: () => {
+                            ChatsController.selectChat(data.id);
+                        }
+                    }
+                });
+            });
         }
         return true;
     }
 
-    private createChats(props: ChatsProps) {
-        return props.chats.map(data => {
-            return new Chat({
-                ...data,
-                events: {
-                    click: () => {
-                        ChatsController.selectChat(data.id);
-                    }
-                }
-            });
-        });
-    }
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);
     }
 }
 
-const withChats = withStore((state) => ({chats: state.chats}));
+const withChats = withStore((state) => ({chats: [...(state.chats || [])]}));
 
 export const ChatsPage = withChats(ChatsPageBase);

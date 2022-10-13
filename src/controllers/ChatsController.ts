@@ -7,7 +7,7 @@ class ChatsController {
         this.api = API;
     }
 
-    async fetchChats() {
+    async fetchChats(){
         try {
             const chats: ChatData[] = await this.api.read();
             store.set('chats', chats);
@@ -20,7 +20,7 @@ class ChatsController {
         store.set('selectedChat', id);
     }
 
-    async addChat(data: TitleData) {
+    async createChat(data: TitleData) {
         try {
             await this.api.create(data);
             await this.fetchChats();
