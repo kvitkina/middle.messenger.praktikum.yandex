@@ -17,11 +17,15 @@
     <div class='chats__detail-header'>
         <img src='{{selectedChat.avatar}}' class='chats__avatar' />
         <h3 class='chats__name'>{{selectedChat.title}}</h3>
-        <ul class='chats__actions-icon'>
+        {{{addUserButton}}}
+        {{{removeUserButton}}}
+
+
+        {{!-- <ul class='chats__actions-icon'>
             <li class='chats__dot'></li>
             <li class='chats__dot'></li>
             <li class='chats__dot'></li>
-        </ul>
+        </ul> --}}
     </div>
 
     <div class='chats__detail-messages'>

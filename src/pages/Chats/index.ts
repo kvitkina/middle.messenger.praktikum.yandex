@@ -12,7 +12,6 @@ import Button from '../../components/Button';
 import Input from '../../components/Input';
 
 interface ChatsProps {
-    chatsList: Block[];
     chats: ChatData[];
     arrowButton: Block;
     addChatButton: Block;
@@ -29,7 +28,15 @@ export class ChatsPageBase extends Block<ChatsProps> {
     }
 
     handleOpenPopup() {
-        this.element?.querySelector('.popup')?.classList.add('popup_visible');
+        this.element?.querySelector('.popup-add-chat')?.classList.add('popup_visible');
+    }
+
+    handleAddUserPopupOpen() {
+
+    }
+
+    handleRemoveUserPopupOpen() {
+
     }
 
     handleClosePopup() {
@@ -56,10 +63,30 @@ export class ChatsPageBase extends Block<ChatsProps> {
                 }
             }
         });
+        this.children.addUserButton = new ActionButton({
+            title: 'Добавить пользователя',
+            icon: '../../../static/images/add-icon.svg',
+            events: {
+                click: () => {
+                    this.handleAddUserPopupOpen();
+                }
+            }
+        });
+        this.children.removeUserButton = new ActionButton({
+            title: 'Удалить пользователя',
+            icon: '../../../static/images/add-icon.svg',
+            modifier: 'action-button__icon_delete',
+            events: {
+                click: () => {
+                    this.handleRemoveUserPopupOpen();
+                }
+            }
+        });
         this.children.addChatPopup = new Popup({
             title: 'Добавить чат',
             button: new Button({ title: 'Готово'}),
             content: new Input({ type: 'text', label: 'Название чата', name: 'chat_title'}),
+            className: 'popup-add-chat',
             events: {
                 submit: (e: any) => {
                     this.handleAddChat(e);

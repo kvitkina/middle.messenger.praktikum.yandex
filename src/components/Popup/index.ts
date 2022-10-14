@@ -6,6 +6,7 @@ export interface PopupProps {
     title: string;
     content: Block;
     button: Block;
+    className?: string;
     events?: {
         submit: (e: SubmitEvent) => void;
     };
