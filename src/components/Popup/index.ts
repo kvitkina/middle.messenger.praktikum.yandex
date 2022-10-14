@@ -18,6 +18,7 @@ export class Popup extends Block<PopupProps> {
         super('section', { ...props });
 
         this.element?.classList.add('popup');
+        this.element?.classList.add(`${this.props.className}`);
     }
 
     render(): DocumentFragment {

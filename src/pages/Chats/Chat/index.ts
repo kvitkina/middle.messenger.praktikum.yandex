@@ -6,19 +6,15 @@ import './Chat.scss';
 interface Props {
     id: number;
     chat: ChatData;
-    selectedChat?: ChatData;
+    selectedChat: ChatData;
     events: {
         click: () => void;
     }
-    isSelected?: boolean;
 }
 
 class Chat extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
-
-        this.element?.classList.add('chat');
-        {this.props.isSelected && this.element?.classList.add('chat_selected');}
     }
 
     render(): DocumentFragment {

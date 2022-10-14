@@ -13,9 +13,6 @@ import Input from '../../components/Input';
 
 interface ChatsProps {
     chats: ChatData[];
-    arrowButton: Block;
-    addChatButton: Block;
-    addChatPopup: Block;
     selectedChat: ChatData;
 }
 
@@ -23,8 +20,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
     constructor(props: ChatsProps) {
         super('div', props);
         this.element?.classList.add('chats');
-        console.log(this.props.selectedChat);
-
     }
 
     handleOpenPopup() {
@@ -32,11 +27,11 @@ export class ChatsPageBase extends Block<ChatsProps> {
     }
 
     handleAddUserPopupOpen() {
-
+        this.element?.querySelector('.popup-add-user')?.classList.add('popup_visible');
     }
 
     handleRemoveUserPopupOpen() {
-
+        this.element?.querySelector('.popup-remove-user')?.classList.add('popup_visible');
     }
 
     handleClosePopup() {
@@ -49,11 +44,26 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
         ChatsController.createChat({title: input?.value});
     }
+    handleAddUser(e: any) {
+        e.preventDefault();
+        const input = this.element?.querySelector('.input__item');
+
+        ChatsController.addUserToChat([input?.value], this.props.selectedChat.id);
+    }
+
+    handleRemoveUser(e: any) {
+        e.preventDefault();
+        const input = this.element?.querySelector('.input__item');
+
+        ChatsController.deleteUsersFromChat([input?.value], this.props.selectedChat.id);
+    }
 
     init(): void {
         ChatsController.fetchChats();
+
         this.children.chatsList = [];
         this.children.arrowButton = new ArrowButton({ callback: () => console.log('сообщение') });
+
         this.children.addChatButton = new ActionButton({
             title: 'Добавить чат',
             icon: '../../../static/images/add-icon.svg',
@@ -94,19 +104,44 @@ export class ChatsPageBase extends Block<ChatsProps> {
                 },
             }
         });
+        this.children.addUserPopup = new Popup({
+            title: 'Добавить пользователя',
+            button: new Button({ title: 'Добавить'}),
+            content: new Input({ type: 'text', label: 'Логин', name: 'add_user_login'}),
+            className: 'popup-add-user',
+            events: {
+                submit: (e: any) => {
+                    this.handleAddUser(e);
+                    this.handleClosePopup();
+                },
+            }
+        });
+        this.children.removeUserPopup = new Popup({
+            title: 'Удалить пользователя',
+            button: new Button({ title: 'Удалить'}),
+            content: new Input({ type: 'text', label: 'Логин', name: 'remove_user_login'}),
+            className: 'popup-remove-user',
+            events: {
+                submit: (e: any) => {
+                    this.handleRemoveUser(e);
+                    this.handleClosePopup();
+                },
+            }
+        });
     }
 
     protected componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps): boolean {
-        if(newProps.chats) {
+        console.log(this.props.selectedChat);
+
+        if(newProps) {
             this.children.chatsList = newProps.chats.map(data => {
-                console.log(data);
                 return new Chat({
                     id: data.id,
                     chat: data,
                     selectedChat: newProps.selectedChat,
                     events: {
                         click: () => {
-                            ChatsController.selectChat(data.id);
+                            ChatsController.selectChat(data);
                         }
                     }
                 });
@@ -120,6 +155,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
     }
 }
 
-const withChats = withStore((state) => ({chats: [...(state.chats || [])]}));
+const withChats = withStore((state) => ({chats: [...(state.chats || [])], selectedChat: state.selectedChat}));
 
 export const ChatsPage = withChats(ChatsPageBase);
