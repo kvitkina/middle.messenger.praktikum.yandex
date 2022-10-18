@@ -14,6 +14,7 @@ export interface InputProps {
     type: string;
     value?: string;
     name: string;
+    className?: string;
     events?: {
         focusin: (e: Event) => void;
         focusout: (e: Event) => void;

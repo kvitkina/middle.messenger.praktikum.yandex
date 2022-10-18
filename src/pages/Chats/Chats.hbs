@@ -23,7 +23,9 @@
         </div>
 
         <div class='chats__detail-messages'>
-
+            {{#each messages}}
+                {{{this}}}
+            {{/each}}
         </div>
         <div class='chats__detail-footer'>
             <div class='chats__clip'></div>

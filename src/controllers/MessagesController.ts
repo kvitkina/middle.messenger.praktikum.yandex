@@ -26,10 +26,7 @@ class MessagesController {
         if (this.sockets.has(id)) {
             return;
         }
-        await AuthController.fetchUser();
-
         const userId = store.getState().user.id;
-
         const wsTransport = new WSTransport(
             `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`
         );

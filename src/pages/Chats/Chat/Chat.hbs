@@ -8,8 +8,10 @@
 
     <div class='chat__details'>
         <time class='chat__time'>{{chat.last_message.time}}</time>
-        <div class='chat__counter'>
-            <p class='chat__counter-text'>{{chat.unread_count}}</p>
-        </div>
+        {{#if chat.unread_count}}
+            <div class='chat__counter'>
+                <p class='chat__counter-text'>{{chat.unread_count}}</p>
+            </div>
+        {{/if}}
     </div>
 </div>

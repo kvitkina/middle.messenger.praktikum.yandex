@@ -22,7 +22,7 @@ export interface User {
     phone: string;
     display_name: string;
     avatar: string;
-    id: string;
+    id: number;
 }
 export class AuthAPI extends BaseAPI {
     constructor() {
