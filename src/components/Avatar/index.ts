@@ -6,7 +6,7 @@ interface Props {
     avatar?: string;
     events: {
         click: () => void;
-    }
+    };
 }
 
 export class Avatar extends Block<Props> {

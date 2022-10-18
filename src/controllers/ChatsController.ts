@@ -1,6 +1,7 @@
 import { User } from '../api/AuthAPI';
 import API, { ChatData, ChatsAPI, TitleData } from '../api/ChatsAPI';
 import store from '../utils/Store';
+import MessagesController from './MessagesController';
 
 class ChatsController {
     private readonly api: ChatsAPI;
@@ -8,9 +9,15 @@ class ChatsController {
         this.api = API;
     }
 
-    async fetchChats(){
+    async fetchChats() {
         try {
             const chats: ChatData[] = await this.api.read();
+
+            chats.map(async (chat) => {
+                const token = await this.getToken(chat.id);
+                await MessagesController.connect(chat.id, token);
+            });
+
             store.set('chats', chats);
         } catch (e: any) {
             console.error(e.reason);
@@ -19,6 +26,10 @@ class ChatsController {
 
     selectChat(data: ChatData) {
         store.set('selectedChat', data);
+    }
+
+    getToken(id: number) {
+        return this.api.getToken(id);
     }
 
     async createChat(data: TitleData) {

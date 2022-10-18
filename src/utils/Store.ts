@@ -1,7 +1,17 @@
+import { User } from '../api/AuthAPI';
+import { ChatData } from '../api/ChatsAPI';
+import { Message } from '../controllers/MessagesController';
 import Block from './Block';
 import { EventBus } from './EventBus';
 import { isEqual, set } from './helpers';
 import { StoreEvents } from './types';
+
+interface State {
+    user: User;
+    selectedChat?: ChatData;
+    chats: ChatData[];
+    messages: Record<number, Message[]>
+}
 
 export class Store extends EventBus {
     private state: any = {};
@@ -19,14 +29,11 @@ export class Store extends EventBus {
 
 const store = new Store();
 
-
-export function withStore(mapStateToProps: (state: any) => any) {
-
-    return function wrap(Component: typeof Block){
+export function withStore(mapStateToProps: (state: State) => any) {
+    return function wrap(Component: typeof Block) {
         let previousState: any;
 
         return class WithStore extends Component {
-
             constructor(props: any) {
                 previousState = mapStateToProps(store.getState());
 
@@ -36,14 +43,13 @@ export function withStore(mapStateToProps: (state: any) => any) {
                     const stateProps = mapStateToProps(store.getState());
 
                     if (!isEqual(previousState, stateProps)) {
-                        this.setProps({...stateProps});
+                        this.setProps({ ...stateProps });
                     }
 
                     previousState = stateProps;
                 });
             }
         };
-
     };
 }
 

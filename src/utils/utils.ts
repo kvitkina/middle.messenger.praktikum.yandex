@@ -40,7 +40,9 @@ export const inputValidator = (
 export const onFormSubmit = (e: Event): Record<string, string> | undefined => {
     e.preventDefault();
     const inputs = document.querySelectorAll('input');
-    const filteredInputs = Array.from(inputs).filter(input => input.getAttribute('type') !== 'file');
+    const filteredInputs = Array.from(inputs).filter(
+        (input) => input.getAttribute('type') !== 'file'
+    );
     const formValues: Record<string, string> = {};
 
     const hasInvalidInput: boolean = filteredInputs.some(

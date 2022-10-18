@@ -10,7 +10,7 @@
 }
 
 .popup {
-    background-color: rgba(0, 0, 0, .5);
+    background-color: rgba(0, 0, 0, 0.5);
     position: fixed;
     top: 0;
     left: 0;
@@ -19,7 +19,7 @@
     display: none;
     justify-content: center;
     align-items: center;
-    animation: fade-out .4s;
+    animation: fade-out 0.4s;
 
     &_visible {
         display: flex;

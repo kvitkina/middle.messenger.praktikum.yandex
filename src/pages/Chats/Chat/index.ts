@@ -9,7 +9,7 @@ interface Props {
     selectedChat: ChatData;
     events: {
         click: () => void;
-    }
+    };
 }
 
 class Chat extends Block<Props> {
@@ -18,7 +18,10 @@ class Chat extends Block<Props> {
     }
 
     render(): DocumentFragment {
-        return this.compile(tmpl, {...this.props, isSelected: this.props.id === this.props.selectedChat?.id});
+        return this.compile(tmpl, {
+            ...this.props,
+            isSelected: this.props.id === this.props.selectedChat?.id,
+        });
     }
 }
 

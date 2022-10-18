@@ -7,7 +7,7 @@ import { ProfilePage } from './pages/Profile';
 import Router from './utils/Router';
 import { Routes } from './utils/types';
 
-window.addEventListener('DOMContentLoaded', async() => {
+window.addEventListener('DOMContentLoaded', async () => {
     Router.use(Routes.Login, LoginPage)
         .use(Routes.Error500, Error500Page)
         .use(Routes.Error404, Error404Page)

@@ -8,7 +8,7 @@ interface Props {
     modifier?: string;
     events: {
         click: () => void;
-    }
+    };
 }
 
 export class ActionButton extends Block<Props> {

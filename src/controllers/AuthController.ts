@@ -37,6 +37,7 @@ class AuthController {
         try {
             const user = await this.api.read();
             store.set('user', user);
+            return user;
         } catch (e: any) {
             console.error(e.reason);
         }

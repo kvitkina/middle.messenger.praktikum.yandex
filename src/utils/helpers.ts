@@ -1,6 +1,6 @@
 export type Indexed<T = any> = {
     [key in string]: T;
-  };
+};
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
     for (let p in rhs) {
@@ -31,13 +31,15 @@ export function set(object: Indexed | unknown, path: string, value: unknown): In
         throw new Error('path must be string');
     }
 
-    const result = path.split('.').reduceRight<Indexed>((acc, key) => ({
-        [key]: acc,
-    }), value as any);
+    const result = path.split('.').reduceRight<Indexed>(
+        (acc, key) => ({
+            [key]: acc,
+        }),
+        value as any
+    );
 
     return merge(object as Indexed, result);
 }
-
 
 // isEqual
 function isArray(value: unknown): value is [] {
@@ -49,13 +51,15 @@ type PlainObject<T = unknown> = {
 };
 
 function isPlainObject(value: unknown): value is PlainObject {
-    return typeof value === 'object'
-      && value !== null
-      && value.constructor === Object
-      && Object.prototype.toString.call(value) === '[object Object]';
+    return (
+        typeof value === 'object' &&
+        value !== null &&
+        value.constructor === Object &&
+        Object.prototype.toString.call(value) === '[object Object]'
+    );
 }
 
-function isArrayOrObject(value: unknown): value is ([] | PlainObject) {
+function isArrayOrObject(value: unknown): value is [] | PlainObject {
     return isPlainObject(value) || isArray(value);
 }
 

@@ -40,7 +40,8 @@ class HTTPTransport {
     private request<Response>(url: string, options: Options): Promise<Response> {
         const { headers = {}, method, data } = options;
         const preparedData = data instanceof FormData ? data : JSON.stringify(data);
-        const preparedHeaders = data instanceof FormData ? {} : { 'Content-Type': 'application/json' };
+        const preparedHeaders =
+            data instanceof FormData ? {} : { 'Content-Type': 'application/json' };
 
         return new Promise(function (resolve, reject) {
             if (!method) {

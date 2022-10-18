@@ -13,7 +13,6 @@ class UserController {
             await this.api.updateUser(data);
 
             await AuthController.fetchUser();
-
         } catch (e: any) {
             console.error(e.reason);
         }
@@ -32,7 +31,6 @@ class UserController {
             await this.api.updateAvatar(data);
 
             await AuthController.fetchUser();
-
         } catch (e: any) {
             console.log(e.reason);
         }

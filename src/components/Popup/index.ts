@@ -10,7 +10,6 @@ export interface PopupProps {
     events?: {
         submit: (e: SubmitEvent) => void;
     };
-
 }
 
 export class Popup extends Block<PopupProps> {
