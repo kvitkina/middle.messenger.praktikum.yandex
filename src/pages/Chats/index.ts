@@ -43,7 +43,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
                 }
             }
         });
-
         this.children.addChatButton = new ActionButton({
             title: 'Добавить чат',
             icon: '../../../static/images/add-icon.svg',
@@ -114,8 +113,10 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     protected componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps): boolean {
         if (newProps.chats) {
+            console.log(newProps.selectedChat);
             this.children.chatsList = newProps.chats.map((data) => {
                 const formatedTime: string = data.last_message?.time.slice(11, 16);
+
                 return new Chat({
                     id: data.id,
                     chat: {...data, last_message: {...data.last_message, time: formatedTime}},
@@ -179,9 +180,23 @@ export class ChatsPageBase extends Block<ChatsProps> {
     }
 }
 
-const withChats = withStore(state => ({
-    chats: [...(state.chats || [])],
-    selectedChat: state.selectedChat,
-}));
+const withChats = withStore(state => {
+    const selectedChatId = state.selectedChat?.id;
+
+    if (!selectedChatId) {
+        return {
+            chats: [...(state.chats || [])],
+            messages: [],
+            selectedChat: undefined,
+        };
+    }
+
+    return {
+        messages: (state.messages || {})[selectedChatId] || [],
+        selectedChat: state.selectedChat,
+        userId: state.user.id,
+        chats: [...(state.chats || [])],
+    };
+});
 
 export const ChatsPage = withChats(ChatsPageBase);
