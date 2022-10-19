@@ -33,8 +33,8 @@ class HTTPTransport {
         return this.request<Response>(this.endpoint + path, { ...options, method: Methods.PUT });
     };
 
-    public delete = (url: string, options?: Options) => {
-        return this.request<Response>(url, { ...options, method: Methods.DELETE });
+    public delete = (path: string, options?: Options) => {
+        return this.request<Response>(this.endpoint + path, { ...options, method: Methods.DELETE });
     };
 
     private request<Response>(url: string, options: Options): Promise<Response> {

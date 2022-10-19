@@ -3,7 +3,7 @@
 .message {
     max-width: 402px;
     width: max-content;
-    border-radius: 6px;
+    border-radius: 10px;
     border-top-left-radius: 0;
     background-color: $message-bg-color;
     padding: 11px;
@@ -19,6 +19,6 @@
         background-color: $accent-bg-color;
         margin-left: auto;
         border-bottom-right-radius: 0;
-        border-top-left-radius: 6px;
+        border-top-left-radius: 10px;
     }
 }

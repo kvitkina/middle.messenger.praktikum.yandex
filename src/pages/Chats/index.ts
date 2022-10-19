@@ -115,9 +115,10 @@ export class ChatsPageBase extends Block<ChatsProps> {
     protected componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps): boolean {
         if (newProps.chats) {
             this.children.chatsList = newProps.chats.map((data) => {
+                const formatedTime: string = data.last_message?.time.slice(11, 16);
                 return new Chat({
                     id: data.id,
-                    chat: {...data, last_message: {...data.last_message, time: data.last_message?.time.slice(11, 16)}},
+                    chat: {...data, last_message: {...data.last_message, time: formatedTime}},
                     selectedChat: newProps.selectedChat,
                     events: {
                         click: () => {
@@ -163,7 +164,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
     handleAddUser(e: any) {
         e.preventDefault();
         const input = this.element?.querySelector('.input__add-user');
-console.log(input);
         ChatsController.addUserToChat([input?.value], this.props.selectedChat.id);
     }
 
