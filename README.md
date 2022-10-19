@@ -1,4 +1,6 @@
 ## Чат
+Классический мессенджер для обмена сообщениями между пользователями.
+Проект создан в рамках обучения на курсе Мидл Фронтенд разрабочик в Яндекс.Практикуме
 
 -   [Макет](<https://www.figma.com/file/6jjbugLZcibVOCTJTHhZm2/Chat_external_link-(Copy)?node-id=0%3A1>)
 -   [Ссылка на Netlify](https://scintillating-figolla-771876.netlify.app/)
@@ -6,9 +8,11 @@
 ### Используемые технологии
 
 > Handlebars
-> TS
+> TypeScript
+> WebSocket
 > Parcel
 > SCSS
+> ESLint, StyleLint
 
 ## Запуск проекта
 
