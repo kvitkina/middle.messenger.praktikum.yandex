@@ -32,7 +32,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
         ChatsController.fetchChats();
         AuthController.fetchUser();
 
-        this.children.chatsList = [];
         this.children.arrowButton = new ArrowButton({
             callback: () => {
                 const input = this.element?.querySelector('.chats__input_message');
@@ -45,29 +44,26 @@ export class ChatsPageBase extends Block<ChatsProps> {
         });
         this.children.addChatButton = new ActionButton({
             title: 'Добавить чат',
-            icon: '../../../static/images/add-icon.svg',
             events: {
                 click: () => {
-                    this.handleOpenPopup();
+                    this.handleOpenPopup('.popup-add-chat');
                 },
             },
         });
         this.children.addUserButton = new ActionButton({
             title: 'Добавить пользователя',
-            icon: '../../../static/images/add-icon.svg',
             events: {
                 click: () => {
-                    this.handleAddUserPopupOpen();
+                    this.handleOpenPopup('.popup-add-user');
                 },
             },
         });
         this.children.removeUserButton = new ActionButton({
             title: 'Удалить пользователя',
-            icon: '../../../static/images/add-icon.svg',
             modifier: 'action-button__icon_delete',
             events: {
                 click: () => {
-                    this.handleRemoveUserPopupOpen();
+                    this.handleOpenPopup('.popup-remove-user');
                 },
             },
         });
@@ -79,7 +75,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
             events: {
                 submit: (e: any) => {
                     this.handleAddChat(e);
-                    this.handleClosePopup();
                 },
             },
         });
@@ -91,7 +86,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
             events: {
                 submit: (e: any) => {
                     this.handleAddUser(e);
-                    this.handleClosePopup();
                 },
             },
         });
@@ -105,7 +99,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
             events: {
                 submit: (e: any) => {
                     this.handleRemoveUser(e);
-                    this.handleClosePopup();
                 },
             },
         });
@@ -139,40 +132,40 @@ export class ChatsPageBase extends Block<ChatsProps> {
         return true;
     }
 
-    handleOpenPopup() {
-        this.element?.querySelector('.popup-add-chat')?.classList.add('popup_visible');
-    }
-
-    handleAddUserPopupOpen() {
-        this.element?.querySelector('.popup-add-user')?.classList.add('popup_visible');
-    }
-
-    handleRemoveUserPopupOpen() {
-        this.element?.querySelector('.popup-remove-user')?.classList.add('popup_visible');
+    handleOpenPopup(selector: string) {
+        this.element?.querySelector(selector)?.classList.add('popup_visible');
     }
 
     handleClosePopup() {
-        this.element?.querySelector('.popup')?.classList.remove('popup_visible');
+        const popupElements: NodeListOf<Element> = this.element!.querySelectorAll('.popup');
+        Array.from(popupElements).map(popup => popup.classList.remove('popup_visible'));
     }
 
     handleAddChat(e: any) {
         e.preventDefault();
-        const input = this.element?.querySelector('.input__item');
-
-        ChatsController.createChat({ title: input?.value });
+        const newChat = this.element?.querySelector('.input__item')?.value;
+        {newChat !== '' &&
+            ChatsController.createChat({ title: newChat });
+        }
+        this.handleClosePopup();
     }
 
     handleAddUser(e: any) {
         e.preventDefault();
-        const input = this.element?.querySelector('.input__add-user');
-        ChatsController.addUserToChat([input?.value], this.props.selectedChat.id);
+        const userToAdd = this.element?.querySelector('.input__add-user')?.value;
+        {userToAdd !== '' &&
+            ChatsController.addUserToChat([userToAdd], this.props.selectedChat.id);
+        }
+        this.handleClosePopup();
     }
 
     handleRemoveUser(e: any) {
         e.preventDefault();
-        const input = this.element?.querySelector('.input__remove-user');
-
-        ChatsController.deleteUsersFromChat([input?.value], this.props.selectedChat.id);
+        const userToRemove = this.element?.querySelector('.input__remove-user')?.value;
+        {userToRemove !== '' &&
+            ChatsController.deleteUsersFromChat([userToRemove], this.props.selectedChat.id);
+        }
+        this.handleClosePopup();
     }
 
     render(): DocumentFragment {
@@ -190,7 +183,6 @@ const withChats = withStore(state => {
             selectedChat: undefined,
         };
     }
-
     return {
         messages: (state.messages || {})[selectedChatId] || [],
         selectedChat: state.selectedChat,

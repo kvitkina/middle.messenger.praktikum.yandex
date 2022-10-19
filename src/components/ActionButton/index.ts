@@ -3,8 +3,8 @@ import tmpl from './ActionButton.hbs';
 import './ActionButton.scss';
 
 interface Props {
-    icon: string;
-    title: string;
+    icon?: string;
+    title?: string;
     modifier?: string;
     events: {
         click: () => void;
@@ -13,7 +13,7 @@ interface Props {
 
 export class ActionButton extends Block<Props> {
     constructor(props: Props) {
-        super('button', props);
+        super('button', { ...props, icon: '../../../static/images/add-icon.svg' });
 
         this.element?.classList.add('action-button');
         this.element?.setAttribute('type', 'button');

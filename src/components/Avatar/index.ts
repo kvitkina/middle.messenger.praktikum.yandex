@@ -4,6 +4,7 @@ import './Avatar.scss';
 
 interface Props {
     avatar?: string;
+    modifier?: string;
     events: {
         click: () => void;
     };
