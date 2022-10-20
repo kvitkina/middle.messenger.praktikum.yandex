@@ -1,5 +1,5 @@
 import Block from '../../utils/Block';
-import tmpl from './popup.hbs';
+import tmpl from './Popup.hbs';
 import './Popup.scss';
 
 export interface PopupProps {
