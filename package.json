@@ -30,6 +30,7 @@
         "@typescript-eslint/eslint-plugin": "^5.36.2",
         "@typescript-eslint/parser": "^5.36.2",
         "eslint": "^8.23.0",
+        "mocha": "^10.1.0",
         "node-sass": "^7.0.1",
         "parcel-transformer-hbs": "^1.0.4",
         "stylelint": "^14.11.0",
