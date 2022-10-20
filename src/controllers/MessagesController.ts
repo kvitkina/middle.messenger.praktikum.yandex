@@ -37,7 +37,6 @@ class MessagesController {
 
         this.subscribe(wsTransport, id);
         this.fetchOldMessages(id);
-
     }
 
     sendMessage(id: number, message: string) {
@@ -94,4 +93,3 @@ class MessagesController {
 }
 
 export default new MessagesController();
-

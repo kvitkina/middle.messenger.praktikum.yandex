@@ -10,7 +10,6 @@ interface Props {
 export class Message extends Block<Props> {
     constructor(props: Props) {
         super('div', props);
-
     }
     render(): DocumentFragment {
         return this.compile(tmpl, this.props);

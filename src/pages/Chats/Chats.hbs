@@ -16,7 +16,10 @@
 {{#if selectedChat}}
     <div class='chats__detail'>
         <div class='chats__detail-header'>
-            <button class='chat__avatar' style='background-image: url({{selectedChat.avatar}})'></button>
+            <button
+                class='chat__avatar'
+                style='background-image: url({{selectedChat.avatar}})'
+            ></button>
             <h3 class='chats__name'>{{selectedChat.title}}</h3>
             {{{addUserButton}}}
             {{{removeUserButton}}}

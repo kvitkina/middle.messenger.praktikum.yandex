@@ -10,7 +10,7 @@ interface State {
     user: User;
     selectedChat?: ChatData;
     chats: ChatData[];
-    messages: Record<number, Message[]>
+    messages: Record<number, Message[]>;
 }
 
 export class Store extends EventBus {
