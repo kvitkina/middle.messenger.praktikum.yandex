@@ -47,7 +47,9 @@ class Block<P extends Props = any> {
         const children: Children = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
-            const isNonEmptyBlockArray: boolean = Array.isArray(value) && value.length > 0 &&
+            const isNonEmptyBlockArray: boolean =
+                Array.isArray(value) &&
+                value.length > 0 &&
                 value.every((value) => value instanceof Block);
 
             if (value instanceof Block) {
