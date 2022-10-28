@@ -21,29 +21,3 @@
     align-items: center;
     justify-content: center;
 }
-
-.links {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-between;
-    margin-bottom: 36px;
-    border-bottom: 1px solid #eaeaea;
-
-    &__item {
-        color: $primary-color;
-        cursor: pointer;
-        width: 100%;
-        display: flex;
-        justify-content: center;
-        border: none;
-        background-color: transparent;
-        padding: 10px 0;
-        transition: all 0.3s;
-        margin: 0;
-        text-decoration: none;
-
-        &:hover {
-            opacity: 0.8;
-        }
-    }
-}

@@ -37,18 +37,21 @@ export const inputValidator = (
     }
 };
 
-export const onFormSubmit = (e: Event): void => {
+export const onFormSubmit = (e: Event): Record<string, string> | undefined => {
     e.preventDefault();
     const inputs = document.querySelectorAll('input');
+    const filteredInputs = Array.from(inputs).filter(
+        (input) => input.getAttribute('type') !== 'file'
+    );
     const formValues: Record<string, string> = {};
 
-    const hasInvalidInput: boolean = Array.from(inputs).some(
+    const hasInvalidInput: boolean = filteredInputs.some(
         (input) => !REGEXP[input.name].expression.test(input.value)
     );
 
     if (hasInvalidInput) {
         return;
     }
-    inputs.forEach((input) => (formValues[input.name] = input.value));
-    console.log(formValues);
+    filteredInputs.forEach((input) => (formValues[input.name] = input.value));
+    return formValues;
 };

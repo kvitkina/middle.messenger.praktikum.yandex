@@ -12,5 +12,11 @@
             }
         ]
     },
-    "ignoreFiles": ["build/*", "dist/*", "static/*", "static/vendor/fonts/*.css", "static/vendor/*.css"]
+    "ignoreFiles": [
+        "build/*",
+        "dist/*",
+        "static/*",
+        "static/vendor/fonts/*.css",
+        "static/vendor/*.css"
+    ]
 }

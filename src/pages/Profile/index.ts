@@ -1,123 +1,172 @@
-import tmpl from './Profile.hbs';
+import template from './Profile.hbs';
 import { ProfileButton } from '../../components/ProfileButton';
 import ProfileInput, { Input } from './ProfileInput';
 import Button from '../../components/Button';
 import './Profile.scss';
 import Block from '../../utils/Block';
 import { onFormSubmit } from '../../utils/utils';
+import { Link } from '../../components/Link';
+import { ArrowButton } from '../../components/ArrowButton';
+import { User } from '../../api/AuthAPI';
+import AuthController from '../../controllers/AuthController';
+import { withStore } from '../../utils/Store';
+import UserController from '../../controllers/UserController';
+import Popup from '../../components/Popup';
+import Avatar from '../../components/Avatar';
 
 interface Props {
+    avatar: Block;
     user: User;
-    inputs: Block[];
+    inputs: Input[];
     actions: Block[];
     saveButton: Block;
+    link: Block;
+    popup: Block;
     events: {
         submit: (e: SubmitEvent) => void;
+        click: () => void;
     };
 }
-
-export interface User {
-    email: string;
-    login: string;
-    first_name: string;
-    second_name: string;
-    phone: string;
-    display_name: string;
-}
-
-const user: User = {
-    email: 'pochta@yandex.ru',
-    login: 'kvitkina',
-    first_name: 'Ирина',
-    second_name: 'Квиткина',
-    phone: '+79099673030',
-    display_name: 'kvitkina',
-};
 
 const profileInputs: Input[] = [
     {
         label: 'Почта',
         type: 'email',
-        value: `${user.email}`,
         name: 'email',
     },
     {
         label: 'Логин',
         type: 'text',
-        value: `${user.login}`,
         name: 'login',
     },
     {
         label: 'Имя',
         type: 'text',
-        value: `${user.first_name}`,
         name: 'first_name',
     },
     {
         label: 'Фамилия',
         type: 'text',
-        value: `${user.second_name}`,
         name: 'second_name',
     },
     {
         label: 'Имя в чате',
         type: 'text',
-        value: `${user.display_name}`,
         name: 'display_name',
     },
     {
         label: 'Телефон',
         type: 'phone',
-        value: `${user.phone}`,
         name: 'phone',
     },
 ];
 
-const passwordInputs: Input[] = [
-    {
-        label: 'Старый пароль',
-        type: 'password',
-        value: '',
-        name: 'oldPassword',
-    },
-    {
-        label: 'Новый пароль',
-        type: 'password',
-        value: '',
-        name: 'newPassword',
-    },
-    {
-        label: 'Повторите новый пароль',
-        type: 'password',
-        value: '',
-        name: 'newPassword',
-    },
-];
+// const passwordInputs: Input[] = [
+//     {
+//         label: 'Старый пароль',
+//         type: 'password',
+//         name: 'oldPassword',
+//     },
+//     {
+//         label: 'Новый пароль',
+//         type: 'password',
+//         name: 'newPassword',
+//     },
+//     {
+//         label: 'Повторите новый пароль',
+//         type: 'password',
+//         name: 'newPassword',
+//     },
+// ];
 
-class Profile extends Block<Props> {
+export class ProfilePageBase extends Block<Props> {
     constructor(props: Props) {
         super('section', props);
         this.element?.classList.add('profile');
     }
 
+    handleLogout(): void {
+        AuthController.logout();
+    }
+
+    handleUpdateUser(e: Event): void {
+        const data = onFormSubmit(e);
+        if (data) {
+            UserController.updateUser(data as any);
+        }
+    }
+
+    handleChangeAvatar(e: any) {
+        e.preventDefault();
+        const data = new FormData(e.target);
+        UserController.updateAvatar(data);
+    }
+
+    handleOpenPopup() {
+        this.element?.querySelector('.popup')?.classList.add('popup_visible');
+    }
+
+    handleClosePopup() {
+        this.element?.querySelector('.popup')?.classList.remove('popup_visible');
+    }
+
+    init(): void {
+        AuthController.fetchUser();
+
+        this.children.avatar = new Avatar({
+            events: {
+                click: () => {
+                    this.handleOpenPopup();
+                },
+            },
+        });
+        this.children.inputs = profileInputs.map((item) => {
+            return new ProfileInput(item);
+        });
+        (this.children.actions = new ProfileButton({ title: 'Изменить данные' })),
+            new ProfileButton({ title: 'Изменить пароль' });
+        this.children.saveButton = new Button({ title: 'Сохранить' });
+        this.children.link = new Link({
+            label: 'Выйти',
+            to: '/',
+            className: 'profile__link',
+            handler: this.handleLogout,
+        });
+        this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
+        this.children.popup = new Popup({
+            title: 'Загрузите файл',
+            button: new Button({ title: 'Поменять' }),
+            content: new ProfileInput({ type: 'file', label: '', name: 'avatar' }),
+            events: {
+                submit: (e: any) => {
+                    this.handleChangeAvatar(e);
+                    this.handleClosePopup();
+                },
+            },
+        });
+        this.props.events = {
+            submit: (e: Event) => {
+                this.handleUpdateUser(e);
+            },
+        };
+    }
+
+    protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
+        if (newProps.user) {
+            this.children.inputs = profileInputs.map((item) => {
+                return new ProfileInput({ ...item, value: newProps.user[item.name] });
+            });
+            this.children.avatar.setProps({
+                avatar: `'https://ya-praktikum.tech/api/v2/resources${newProps.user.avatar}'`,
+            });
+        }
+        return true;
+    }
+
     render(): DocumentFragment {
-        return this.compile(tmpl, this.props);
+        return this.compile(template, this.props);
     }
 }
 
-const ProfilePage = new Profile({
-    user,
-    inputs: profileInputs.map((item) => new ProfileInput(item)),
-    actions: [
-        new ProfileButton({ title: 'Изменить данные' }),
-        new ProfileButton({ title: 'Изменить пароль' }),
-    ],
-    saveButton: new Button({ title: 'Сохранить' }),
-    events: {
-        submit: (e) => {
-            onFormSubmit(e);
-        },
-    },
-});
-
-export default ProfilePage;
+const withUser = withStore((state) => ({ user: state.user }));
+export const ProfilePage = withUser(ProfilePageBase);

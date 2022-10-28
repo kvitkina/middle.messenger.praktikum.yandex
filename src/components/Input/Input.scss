@@ -6,10 +6,6 @@
     position: relative;
     margin-bottom: 32px;
 
-    &:last-child {
-        margin-bottom: 0;
-    }
-
     &__label {
         font-weight: 500;
         font-size: 9px;
@@ -21,6 +17,7 @@
     &__item {
         border: none;
         border-bottom: 1px solid $primary-color;
+        background-color: inherit;
 
         &::placeholder {
             font-weight: 500;

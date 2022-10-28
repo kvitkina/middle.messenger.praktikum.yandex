@@ -1,13 +1,17 @@
-<img src='{{avatar}}' class='chat__avatar' />
+<div class='chat {{#if isSelected }}chat_selected{{/if}}'>
+    <button class='chat__avatar' style='background-image: url({{chat.avatar}})'></button>
 
-<div class='chat__info'>
-    <h3 class='chat__name'>{{name}}</h3>
-    <p class='chat__text'>{{lastMessage}}</p>
-</div>
+    <div class='chat__info'>
+        <h3 class='chat__name'>{{chat.title}}</h3>
+        <p class='chat__text'>{{chat.last_message.content}}</p>
+    </div>
 
-<div class='chat__details'>
-    <time class='chat__time'>{{lastMessageTime}}</time>
-    <div class='chat__counter'>
-        <p class='chat__counter-text'>{{newMessagesCounter}}</p>
+    <div class='chat__details'>
+        <time class='chat__time'>{{chat.last_message.time}}</time>
+        {{#if chat.unread_count}}
+            <div class='chat__counter'>
+                <p class='chat__counter-text'>{{chat.unread_count}}</p>
+            </div>
+        {{/if}}
     </div>
 </div>
