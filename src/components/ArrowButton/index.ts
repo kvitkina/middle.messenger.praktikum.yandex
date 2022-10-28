@@ -25,7 +25,7 @@ export class BaseArrowButton extends Block<Props> {
         if (this.props.modifier) {
             this.props.router.back();
         }
-        this.props.callback!();
+        this.props.callback && this.props.callback();
     }
 
     render(): DocumentFragment {

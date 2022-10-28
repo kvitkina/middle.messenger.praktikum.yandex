@@ -5,7 +5,7 @@ import './ActionButton.scss';
 interface Props {
     icon?: string;
     title?: string;
-    modifier?: string;
+    modifier?: 'delete';
     events: {
         click: () => void;
     };

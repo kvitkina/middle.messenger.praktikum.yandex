@@ -1,20 +1,10 @@
-import { User } from '../api/AuthAPI';
-import { ChatData } from '../api/ChatsAPI';
-import { Message } from '../controllers/MessagesController';
 import Block from './Block';
 import { EventBus } from './EventBus';
 import { isEqual, set } from './helpers';
-import { StoreEvents } from './types';
-
-interface State {
-    user: User;
-    selectedChat?: ChatData;
-    chats: ChatData[];
-    messages: Record<number, Message[]>;
-}
+import { State, StoreEvents } from './types';
 
 export class Store extends EventBus {
-    private state: any = {};
+    private state: State = {};
 
     public set(keypath: string, data: unknown) {
         set(this.state, keypath, data);

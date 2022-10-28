@@ -35,7 +35,7 @@
     }
 
     &__button {
-        // margin-left: auto;
+        margin-left: auto;
         font-weight: 500;
         font-size: 12px;
         line-height: 12px;
@@ -136,18 +136,6 @@
         height: 40px;
         justify-content: center;
         align-items: center;
-    }
-
-    &__dot {
-        width: 3px;
-        height: 3px;
-        margin-bottom: 3px;
-        border-radius: 50%;
-        background-color: $text-color;
-
-        &:last-child {
-            margin-bottom: 0;
-        }
     }
 
     &__detail-footer {

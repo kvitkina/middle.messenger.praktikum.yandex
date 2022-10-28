@@ -1,5 +1,6 @@
 import { User } from '../api/AuthAPI';
-import Chat from '../pages/Chats/Chat';
+import { ChatData } from '../api/ChatsAPI';
+import { Message } from '../controllers/MessagesController';
 
 export enum Routes {
     Login = '/',
@@ -15,6 +16,8 @@ export enum StoreEvents {
 }
 
 export interface State {
-    user: User;
-    chats: Chat[];
+    user?: User;
+    selectedChat?: ChatData;
+    chats?: ChatData[];
+    messages?: Record<number, Message[]>;
 }
