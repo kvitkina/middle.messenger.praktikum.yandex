@@ -3,7 +3,7 @@
         "start": "npm run build && node server.js",
         "dev": "parcel static/index.html --target default --dist-dir ./build",
         "build": "parcel build static/index.html",
-        "test": "mocha --require ts-node/register './src/**/*.test.ts'"
+        "test": "mocha --require ts-node/register --require ./mochaSetup.js './src/**/*.test.ts'"
     },
     "name": "middle.messenger.praktikum.yandex",
     "description": "[Макет](https://www.figma.com/file/6jjbugLZcibVOCTJTHhZm2/Chat_external_link-(Copy)?node-id=0%3A1)\r [Проект выложен на Netlify](https://funny-cobbler-da5b3d.netlify.app/)",
@@ -23,22 +23,31 @@
         "@types/mocha": "^10.0.0",
         "express": "^4.18.1",
         "handlebars": "^4.7.7",
-        "nanoid": "^4.0.0",
+        "nanoid": "^3.3.4",
         "parcel": "^2.7.0",
         "prettier": "^2.7.1"
     },
     "devDependencies": {
         "@parcel/transformer-html": "^2.7.0",
         "@parcel/transformer-sass": "^2.7.0",
+        "@types/jsdom": "^20.0.0",
+        "@types/sinon": "^10.0.13",
         "@typescript-eslint/eslint-plugin": "^5.36.2",
         "@typescript-eslint/parser": "^5.36.2",
         "chai": "^4.3.6",
         "eslint": "^8.23.0",
+        "husky": "^8.0.1",
+        "jsdom": "^20.0.2",
         "mocha": "^10.1.0",
         "node-sass": "^7.0.1",
+        "npm-run-all": "^4.1.5",
         "parcel-transformer-hbs": "^1.0.4",
+        "sinon": "^14.0.1",
         "stylelint": "^14.11.0",
         "stylelint-config-standard-scss": "^5.0.0",
-        "typescript": "^4.8.2"
+        "ts-node": "^10.9.1",
+        "typescript": "^4.8.2",
+        "webpack": "^5.74.0",
+        "webpack-cli": "^4.10.0"
     }
 }
