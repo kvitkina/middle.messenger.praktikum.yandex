@@ -9,14 +9,14 @@ describe('Link', () => {
     });
 
     it('element should return span', () => {
-        const link = new Link({ to: '/' });
+        const link = new Link({ to: '/', label: 'Test' });
         const element = link.element;
 
         expect(element).to.be.instanceof(window.HTMLSpanElement);
     });
 
     it('should go to passed route on click', () => {
-        const link = new Link({ to: '/' });
+        const link = new Link({ to: '/', label: 'Test' });
         const spy = sinon.spy(Router, 'go');
         const element = link.element as HTMLSpanElement;
 
