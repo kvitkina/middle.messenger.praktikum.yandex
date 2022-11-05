@@ -33,6 +33,7 @@ export class RegistrationPage extends Block<Props> {
                 new Input({ label: 'Телефон', type: 'phone', value: '', name: 'phone' }),
                 new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
             ],
+            // @ts-ignore
             link: new Link({ label: 'Войти', to: '/' }),
             button: new Button({ title: 'Зарегистрироваться' }),
             controller: this.handleSignup,

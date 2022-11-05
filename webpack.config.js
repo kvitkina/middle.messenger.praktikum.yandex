@@ -17,7 +17,7 @@ module.exports = {
     },
     devServer: {
         compress: true,
-        port: 3000,
+        port: 4000,
         historyApiFallback: true,
         open: true,
         hot: true,
@@ -39,17 +39,17 @@ module.exports = {
                 use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
             },
             {
+                test: /\.(eot|ttf|woff|woff2)$/,
+                loader: 'file-loader',
+                options: {
+                    outputPath: 'vendor',
+                    name: '[name].[ext]',
+                    esModule: false,
+                },
+            },
+            {
                 test: /\.(png|jpe?g|svg|gif)$/i,
-                use: [
-                    {
-                        loader: 'file-loader',
-                        options: {
-                            outputPath: 'images',
-                            name: '[name].[ext]',
-                            esModule: false,
-                        },
-                    },
-                ],
+                type: 'asset/resource',
             },
         ],
     },

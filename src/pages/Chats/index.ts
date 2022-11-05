@@ -31,11 +31,13 @@ export class ChatsPageBase extends Block<ChatsProps> {
     init(): void {
         ChatsController.fetchChats();
         AuthController.fetchUser();
-
+        // @ts-ignore
         this.children.arrowButton = new ArrowButton({
             callback: () => {
                 const input = this.element?.querySelector('.chats__input_message');
+                // @ts-ignore
                 const message = input!.value;
+                // @ts-ignore
                 input!.value = '';
                 {
                     message !== '' &&
@@ -115,6 +117,7 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     protected componentDidUpdate(oldProps: ChatsProps, newProps: ChatsProps): boolean {
         if (newProps.chats) {
+            // @ts-ignore
             this.children.chatsList = newProps.chats.map((data) => {
                 const formatedTime: string = data.last_message?.time.slice(11, 16);
 
@@ -131,11 +134,12 @@ export class ChatsPageBase extends Block<ChatsProps> {
             });
 
             if (newProps.selectedChat) {
-                const messages = store.getState().messages[newProps.selectedChat.id];
+                const messages = store.getState().messages![newProps.selectedChat.id];
+                // @ts-ignore
                 this.children.messages = messages.map((item: MessageInfo) => {
                     return new Message({
                         content: item.content,
-                        isMine: item.user_id === store.getState().user.id,
+                        isMine: item.user_id === store.getState().user?.id,
                     });
                 });
             }
@@ -154,6 +158,7 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     handleAddChat(e: any) {
         e.preventDefault();
+        // @ts-ignore
         const newChat = this.element?.querySelector('.input__item')?.value;
         {
             newChat !== '' && ChatsController.createChat({ title: newChat });
@@ -163,6 +168,7 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     handleAddUser(e: any) {
         e.preventDefault();
+        // @ts-ignore
         const userToAdd = this.element?.querySelector('.input__add-user')?.value;
         {
             userToAdd !== '' &&
@@ -173,6 +179,7 @@ export class ChatsPageBase extends Block<ChatsProps> {
 
     handleRemoveUser(e: any) {
         e.preventDefault();
+        // @ts-ignore
         const userToRemove = this.element?.querySelector('.input__remove-user')?.value;
         {
             userToRemove !== '' &&
@@ -199,9 +206,9 @@ const withChats = withStore((state) => {
     return {
         messages: (state.messages || {})[selectedChatId] || [],
         selectedChat: state.selectedChat,
-        userId: state.user.id,
+        userId: state.user?.id,
         chats: [...(state.chats || [])],
     };
 });
-
+// @ts-ignore
 export const ChatsPage = withChats(ChatsPageBase);

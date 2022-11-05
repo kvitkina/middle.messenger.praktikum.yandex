@@ -34,5 +34,5 @@ class BaseLink extends Block<LinkProps> {
         return this.compile(template, { ...this.props });
     }
 }
-
+// @ts-ignore
 export const Link = withRouter(BaseLink);

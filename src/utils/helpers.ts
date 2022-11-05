@@ -3,7 +3,9 @@ export type Indexed<T = any> = {
 };
 
 export function merge(lhs: Indexed, rhs: Indexed): Indexed {
-    for (let p in rhs) {
+    let p;
+    for (p in rhs) {
+        // eslint-disable-next-line no-prototype-builtins
         if (!rhs.hasOwnProperty(p)) {
             continue;
         }
@@ -69,6 +71,7 @@ export function isEqual(lhs: PlainObject | [], rhs: PlainObject | []) {
     }
 
     for (const [key, value] of Object.entries(lhs)) {
+        // @ts-ignore
         const rightValue = rhs[key];
         if (isArrayOrObject(value) && isArrayOrObject(rightValue)) {
             if (isEqual(value, rightValue)) {

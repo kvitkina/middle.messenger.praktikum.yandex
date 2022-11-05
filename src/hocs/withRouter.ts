@@ -7,7 +7,7 @@ export interface PropsWithRouter {
 
 export function withRouter(Component: Block<any>) {
     type Props = typeof Component extends Block<infer P> ? P : any;
-
+    // @ts-ignore
     return class WithRouter extends Component {
         constructor(props: Props & PropsWithRouter) {
             super({ ...props, router: Router });

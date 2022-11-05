@@ -31,6 +31,7 @@ export class LoginPage extends Block<Props> {
                 new Input({ label: 'Логин', type: 'text', value: '', name: 'login' }),
                 new Input({ label: 'Пароль', type: 'password', value: '', name: 'password' }),
             ],
+            // @ts-ignore
             link: new Link({ label: 'Нет аккаунта?', to: '/signup' }),
             button: new Button({ title: 'Вход' }),
             controller: this.handleSignup,

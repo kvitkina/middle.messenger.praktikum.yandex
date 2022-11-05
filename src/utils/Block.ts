@@ -16,7 +16,7 @@ class Block<P extends Props = any> {
     static EVENTS = EVENTS;
 
     public id = nanoid(6);
-    protected props: P;
+    public props: P;
     public children: Children;
     private eventBus: () => EventBus;
     private _element: HTMLElement | null = null;
@@ -47,14 +47,10 @@ class Block<P extends Props = any> {
         const children: Children = {};
 
         Object.entries(childrenAndProps).forEach(([key, value]) => {
-            const isNonEmptyBlockArray: boolean =
-                Array.isArray(value) &&
-                value.length > 0 &&
-                value.every((value) => value instanceof Block);
-
             if (value instanceof Block) {
                 children[key] = value;
-            } else if (isNonEmptyBlockArray) {
+            } else if (Array.isArray(value) && value.every((value) => value instanceof Block)) {
+                // @ts-ignore
                 children[key] = value;
             } else {
                 props[key as string] = value;

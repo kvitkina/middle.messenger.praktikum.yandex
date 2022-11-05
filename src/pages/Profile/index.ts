@@ -24,7 +24,7 @@ interface Props {
     popup: Block;
     events: {
         submit: (e: SubmitEvent) => void;
-        click: () => void;
+        click?: () => void;
     };
 }
 
@@ -60,24 +60,6 @@ const profileInputs: Input[] = [
         name: 'phone',
     },
 ];
-
-// const passwordInputs: Input[] = [
-//     {
-//         label: 'Старый пароль',
-//         type: 'password',
-//         name: 'oldPassword',
-//     },
-//     {
-//         label: 'Новый пароль',
-//         type: 'password',
-//         name: 'newPassword',
-//     },
-//     {
-//         label: 'Повторите новый пароль',
-//         type: 'password',
-//         name: 'newPassword',
-//     },
-// ];
 
 export class ProfilePageBase extends Block<Props> {
     constructor(props: Props) {
@@ -120,18 +102,21 @@ export class ProfilePageBase extends Block<Props> {
                 },
             },
         });
+        // @ts-ignore
         this.children.inputs = profileInputs.map((item) => {
             return new ProfileInput(item);
         });
         (this.children.actions = new ProfileButton({ title: 'Изменить данные' })),
-            new ProfileButton({ title: 'Изменить пароль' });
+        new ProfileButton({ title: 'Изменить пароль' });
         this.children.saveButton = new Button({ title: 'Сохранить' });
+        // @ts-ignore
         this.children.link = new Link({
             label: 'Выйти',
             to: '/',
             className: 'profile__link',
             handler: this.handleLogout,
         });
+        // @ts-ignore
         this.children.arrowButton = new ArrowButton({ modifier: 'arrow-button_back' });
         this.children.popup = new Popup({
             title: 'Загрузите файл',
@@ -153,7 +138,9 @@ export class ProfilePageBase extends Block<Props> {
 
     protected componentDidUpdate(oldProps: Props, newProps: Props): boolean {
         if (newProps.user) {
+            // @ts-ignore
             this.children.inputs = profileInputs.map((item) => {
+                // @ts-ignore
                 return new ProfileInput({ ...item, value: newProps.user[item.name] });
             });
             this.children.avatar.setProps({
@@ -169,4 +156,5 @@ export class ProfilePageBase extends Block<Props> {
 }
 
 const withUser = withStore((state) => ({ user: state.user }));
+// @ts-ignore
 export const ProfilePage = withUser(ProfilePageBase);

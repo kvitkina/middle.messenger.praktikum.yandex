@@ -59,10 +59,11 @@ class HTTPTransport {
             });
 
             xhr.onload = function () {
+                // @ts-ignore
                 resolve(xhr);
             };
 
-            xhr.onreadystatechange = (e) => {
+            xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status < 400) {
                         resolve(xhr.response);
