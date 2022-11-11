@@ -11,7 +11,7 @@ describe('HTTPTransport', () => {
     beforeEach(() => {
         xhr = sinon.useFakeXMLHttpRequest();
 
-        // @ts-ignore
+        // @ts-expect-error
         global.XMLHttpRequest = xhr;
 
         xhr.onCreate = (request: SinonFakeXMLHttpRequest) => {
@@ -30,14 +30,14 @@ describe('HTTPTransport', () => {
 
         const [request] = requests;
 
-        expect(request.method).to.eq('Get');
+        expect(request.method).to.eq('GET');
     });
 
     it('.post() should send POST request', () => {
-        instance.get('/signin');
+        instance.post('/signin');
 
         const [request] = requests;
 
-        expect(request.method).to.eq('Post');
+        expect(request.method).to.eq('POST');
     });
 });

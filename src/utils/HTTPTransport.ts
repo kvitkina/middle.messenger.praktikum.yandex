@@ -59,8 +59,7 @@ class HTTPTransport {
             });
 
             xhr.onload = function () {
-                // @ts-ignore
-                resolve(xhr);
+                resolve(xhr as Response);
             };
 
             xhr.onreadystatechange = () => {

@@ -30,7 +30,7 @@ describe('Block', () => {
         expect(eventBusMock.emit.calledWith('init')).to.eq(true);
     });
 
-    it.only('setProps() should update properties', () => {
+    it('setProps() should update properties', () => {
         const component = new ComponentMock({});
         component.setProps({ props: 'new' });
         const result = component.props.props;

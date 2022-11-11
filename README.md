@@ -16,6 +16,7 @@
 > SCSS
 > ESLint, StyleLint
 > Docker
+> Mocha, Chai
 
 ## Запуск проекта
 
