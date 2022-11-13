@@ -11,7 +11,9 @@
         "noImplicitAny": true,
         "skipLibCheck": true,
         "strict": true,
-        "esModuleInterop": true
+        "esModuleInterop": true,
+        "typeRoots": ["node_modules/@types", "src/typings/app.d.ts"],
     },
-    "exclude": ["dist", "node_modules"]
+    "exclude": ["dist", "node_modules"],
+    "include": ["./**/*.ts"]
 }

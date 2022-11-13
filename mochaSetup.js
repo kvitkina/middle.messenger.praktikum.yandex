@@ -16,6 +16,7 @@ require.extensions['.hbs'] = function (module, filename) {
 
     module.exports = Handlebars.compile(contents);
 };
+
 require.extensions['.scss'] = function () {
     module.exports = () => ({});
 };
