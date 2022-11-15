@@ -1,4 +1,5 @@
 import { ChatData } from '../../../api/ChatsAPI';
+import ChatsController from '../../../controllers/ChatsController';
 import Block from '../../../utils/Block';
 import tmpl from './Chat.hbs';
 import './Chat.scss';
@@ -7,14 +8,20 @@ interface Props {
     id: number;
     chat: ChatData;
     selectedChat: ChatData;
-    events: {
+    events?: {
         click: () => void;
     };
 }
 
 class Chat extends Block<Props> {
     constructor(props: Props) {
-        super('div', props);
+        super('div', { ...props,
+            events: {
+                click: () => {
+                    ChatsController.selectChat(props.chat);
+                },
+            },
+        });
     }
 
     render(): DocumentFragment {

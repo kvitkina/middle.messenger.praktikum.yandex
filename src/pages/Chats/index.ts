@@ -125,11 +125,6 @@ export class ChatsPageBase extends Block<ChatsProps> {
                     id: data.id,
                     chat: { ...data, last_message: { ...data.last_message, time: formatedTime } },
                     selectedChat: newProps.selectedChat,
-                    events: {
-                        click: () => {
-                            ChatsController.selectChat(data);
-                        },
-                    },
                 });
             });
 
