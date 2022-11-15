@@ -59,10 +59,10 @@ class HTTPTransport {
             });
 
             xhr.onload = function () {
-                resolve(xhr);
+                resolve(xhr as Response);
             };
 
-            xhr.onreadystatechange = (e) => {
+            xhr.onreadystatechange = () => {
                 if (xhr.readyState === XMLHttpRequest.DONE) {
                     if (xhr.status < 400) {
                         resolve(xhr.response);

@@ -42,7 +42,7 @@ export class ChatsAPI extends BaseAPI {
 
     async getToken(id: number): Promise<string> {
         const response = await this.http.post(`/token/${id}`, { headers: this.headers });
-
+        // @ts-ignore
         return response.token;
     }
 

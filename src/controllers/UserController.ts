@@ -1,5 +1,4 @@
 import API, { PasswordData, User, UserAPI } from '../api/UserAPI';
-import store from '../utils/Store';
 import AuthController from './AuthController';
 
 class UserController {

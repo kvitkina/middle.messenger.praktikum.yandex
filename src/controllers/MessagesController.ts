@@ -1,6 +1,5 @@
 import WSTransport, { WSTransportEvents } from '../utils/WSTransport';
 import store from '../utils/Store';
-import AuthController from './AuthController';
 
 export interface Message {
     chat_id: number;
@@ -26,7 +25,7 @@ class MessagesController {
         if (this.sockets.has(id)) {
             return;
         }
-        const userId = store.getState().user.id;
+        const userId = store.getState().user?.id;
         const wsTransport = new WSTransport(
             `wss://ya-praktikum.tech/ws/chats/${userId}/${id}/${token}`
         );
@@ -87,7 +86,7 @@ class MessagesController {
     }
 
     private subscribe(transport: WSTransport, id: number) {
-        transport.on(WSTransportEvents.Message, (message) => this.onMessage(id, message));
+        transport.on(WSTransportEvents.Message, (message: Message) => this.onMessage(id, message));
         transport.on(WSTransportEvents.Close, () => this.onClose(id));
     }
 }

@@ -5,15 +5,18 @@
 
 -   [Макет](<https://www.figma.com/file/6jjbugLZcibVOCTJTHhZm2/Chat_external_link-(Copy)?node-id=0%3A1>)
 -   [Ссылка на Netlify](https://scintillating-figolla-771876.netlify.app/)
+-   [Ссылка на Heroku](https://kvi-chat.herokuapp.com)
 
 ### Используемые технологии
 
 > Handlebars
 > TypeScript
 > WebSocket
-> Parcel
+> Parcel/Webpack
 > SCSS
 > ESLint, StyleLint
+> Docker
+> Mocha, Chai
 
 ## Запуск проекта
 

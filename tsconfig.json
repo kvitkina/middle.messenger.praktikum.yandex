@@ -7,8 +7,13 @@
         "strictNullChecks": true,
         "sourceMap": true,
         "noUnusedLocals": true,
-        "noUnusedParameters": true,
-        "noImplicitAny": true
+        "noUnusedParameters": false,
+        "noImplicitAny": true,
+        "skipLibCheck": true,
+        "strict": true,
+        "esModuleInterop": true,
+        "typeRoots": ["node_modules/@types", "src/typings/app.d.ts"],
     },
-    "exclude": ["dist", "node_modules"]
+    "exclude": ["dist", "node_modules"],
+    "include": ["./**/*.ts"]
 }

@@ -107,6 +107,12 @@
 
     &__detail-footer {
         margin-top: auto;
+        border-top: 1px solid $border-color;
+        min-height: 54px;
+        width: 100%;
+        display: flex;
+        flex-direction: row;
+        align-items: center;
     }
 
     &__avatar {
@@ -135,15 +141,6 @@
         width: 20px;
         height: 40px;
         justify-content: center;
-        align-items: center;
-    }
-
-    &__detail-footer {
-        border-top: 1px solid $border-color;
-        min-height: 54px;
-        width: 100%;
-        display: flex;
-        flex-direction: row;
         align-items: center;
     }
 

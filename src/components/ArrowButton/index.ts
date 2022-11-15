@@ -32,5 +32,5 @@ export class BaseArrowButton extends Block<Props> {
         return this.compile(tmpl, this.props);
     }
 }
-
+// @ts-ignore
 export const ArrowButton = withRouter(BaseArrowButton);
